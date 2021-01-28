@@ -8,43 +8,6 @@ import static org.junit.Assert.*;
 public class StartUITest {
 
     @Test
-    public void whenAddItem() {
-        String[] answers = {"Fix PC"};
-        Input input = new StubInput(answers);
-        Tracker tracker = new Tracker();
-        StartUI.createItem(input, tracker);
-        Item created = tracker.findAll()[0];
-        Item expected = new Item("Fix PC");
-        assertThat(created.getName(), is(expected.getName()));
-    }
-
-    @Test
-    public void whenReplaceItemOld() {
-        Tracker tracker = new Tracker();
-        Item item = new Item("new item");
-        tracker.add(item);
-        String[] answers = {
-                String.valueOf(item.getId()), /* id сохраненной заявки в объект tracker. */
-                "replaced item"
-        };
-        StartUI.replaceItem(new StubInput(answers), tracker);
-        Item replaced = tracker.findById(item.getId());
-        assertThat(replaced.getName(), is("replaced item"));
-    }
-
-    @Test
-    public void whenDeleteItemOld() {
-        Tracker tracker = new Tracker();
-        Item item = new Item("new item");
-        tracker.add(item);
-        String[] answers = {String.valueOf(item.getId())};
-        StartUI.deleteItem(new StubInput(answers), tracker);
-        Item deleted = tracker.findById(item.getId());
-        String checkNull = null;
-        assertThat(deleted, is(checkNull));
-    }
-
-    @Test
     public void whenCreateItem() {
         Output output = new ConsoleOutput();
         Input in = new StubInput(
@@ -53,7 +16,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         UserAction[] actions = {
                 new CreateAction(output),
-                new ExitProgram()
+                new ExitProgram(output)
         };
         new StartUI(output).init(in, tracker, actions);
         assertThat(tracker.findAll()[0].getName(), is("Item name"));
@@ -71,8 +34,8 @@ public class StartUITest {
                 new String[] {"0", String.valueOf(item.getId()), replacedName, "1"}
         );
         UserAction[] actions = {
-                new ReplaceAction(),
-                new ExitProgram()
+                new ReplaceAction(output),
+                new ExitProgram(output)
         };
         new StartUI(output).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
@@ -80,7 +43,7 @@ public class StartUITest {
 
     @Test
     public void whenDeleteItem() {
-        Output output = new ConsoleOutput();
+        Output out = new ConsoleOutput();
         Tracker tracker = new Tracker();
          //Добавим в tracker новую заявку
         Item item = tracker.add(new Item("Deleted item"));
@@ -89,10 +52,10 @@ public class StartUITest {
                 new String[] {"0", String.valueOf(item.getId()), "1"}
         );
         UserAction[] actions = {
-                new DeleteItem(),
-                new ExitProgram()
+                new DeleteItem(out),
+                new ExitProgram(out)
         };
-        new StartUI(output).init(in, tracker, actions);
+        new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
 
@@ -104,12 +67,14 @@ public class StartUITest {
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = {
-                new ExitProgram()
+                new ExitProgram(out)
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + System.lineSeparator() +
-                        "0. Exit Program." + System.lineSeparator()
+                "Menu."
+                        + System.lineSeparator()
+                        + "0. Exit Program."
+                        + System.lineSeparator()
         ));
 }
 
@@ -123,8 +88,8 @@ public class StartUITest {
                 new String[] {"0", "1"}
         );
         UserAction[] actions = {
-                new ShowAllItems(),
-                new ExitProgram()
+                new ShowAllItems(out),
+                new ExitProgram(out)
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()).getName(), is(showAllItems));
@@ -141,8 +106,8 @@ public class StartUITest {
                 new String[] {"0", findByName, "1"}
         );
         UserAction[] actions = {
-                new FindByName(),
-                new ExitProgram()
+                new FindByName(out),
+                new ExitProgram(out)
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()).getName(), is(findByName));
@@ -158,8 +123,8 @@ public class StartUITest {
                 new String[] {"0", String.valueOf(item.getId()), "1"}
         );
         UserAction[] actions = {
-                new FindById(),
-                new ExitProgram()
+                new FindById(out),
+                new ExitProgram(out)
         };
         new StartUI(out).init(in, tracker, actions);
         assertThat(item.getId(), is(1));

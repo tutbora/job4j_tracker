@@ -1,8 +1,13 @@
 package ru.job4j.tracker;
 
-import static ru.job4j.tracker.StartUI.NL;
-
 public class ShowAllItems implements UserAction {
+    public static final String NL = System.lineSeparator();
+    private final Output out;
+
+    public ShowAllItems(Output out) {
+        this.out = out;
+    }
+
     @Override
     public String name() {
         return "Show all items.";
@@ -11,9 +16,9 @@ public class ShowAllItems implements UserAction {
     @Override
     public boolean execute(Input input, Tracker tracker) {
         Item[] resultFindAll = tracker.findAll();
-        System.out.println(NL + "Total items: " + resultFindAll.length);
+        out.println(NL + "Total items: " + resultFindAll.length);
         for (Item item : resultFindAll) {
-            System.out.println(item);
+            out.println(item);
         }
         return true;
     }
