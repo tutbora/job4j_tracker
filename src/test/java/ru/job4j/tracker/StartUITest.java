@@ -26,9 +26,7 @@ public class StartUITest {
     public void whenReplaceItem() {
         Output output = new ConsoleOutput();
         Tracker tracker = new Tracker();
-         //Добавим в tracker новую заявку
         Item item = tracker.add(new Item("Replaced item"));
-         //Входные данные должны содержать ID добавленной заявки item.getId()
         String replacedName = "New item name";
         Input in = new StubInput(
                 new String[] {"0", String.valueOf(item.getId()), replacedName, "1"}
@@ -45,9 +43,7 @@ public class StartUITest {
     public void whenDeleteItem() {
         Output out = new ConsoleOutput();
         Tracker tracker = new Tracker();
-         //Добавим в tracker новую заявку
         Item item = tracker.add(new Item("Deleted item"));
-         //Входные данные должны содержать ID добавленной заявки item.getId()
         Input in = new StubInput(
                 new String[] {"0", String.valueOf(item.getId()), "1"}
         );
@@ -92,7 +88,7 @@ public class StartUITest {
                 new ExitProgram(out)
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findById(item.getId()).getName(), is(showAllItems));
+        assertThat(out.toString(tracker.findById(item.getId()).getName()), is(showAllItems));
     }
 
     @Test
@@ -110,7 +106,7 @@ public class StartUITest {
                 new ExitProgram(out)
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findById(item.getId()).getName(), is(findByName));
+        assertThat(out.toString(tracker.findById(item.getId()).getName()), is(findByName));
     }
 
     @Test
@@ -127,6 +123,6 @@ public class StartUITest {
                 new ExitProgram(out)
         };
         new StartUI(out).init(in, tracker, actions);
-        assertThat(item.getId(), is(1));
+        assertThat(out.toString(item.getId()), is(1));
     }
 }
