@@ -78,7 +78,7 @@ public class StartUITest {
     public void whenShowAllItems() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        tracker.add(new Item("ShowAllItems item"));
+        Item item1 = tracker.add(new Item("ShowAllItems item"));
         Input in = new StubInput(
                 new String[] {"0", "1"}
         );
@@ -96,7 +96,7 @@ public class StartUITest {
                 + System.lineSeparator()
                 + "Total items: 1"
                 + System.lineSeparator()
-                + "Item{id=1, name='ShowAllItems item'}"
+                + item1
                 + System.lineSeparator()
                 + "Menu."
                 + System.lineSeparator()
@@ -111,8 +111,8 @@ public class StartUITest {
     public void whenFindByName() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        tracker.add(new Item("Find"));
-        tracker.add(new Item("Find"));
+        Item item1 = tracker.add(new Item("Find"));
+        Item item2 = tracker.add(new Item("Find"));
         Input in = new StubInput(
                 new String[] {"0", "Find", "1"}
         );
@@ -127,9 +127,11 @@ public class StartUITest {
                 + System.lineSeparator()
                 + "1. Exit Program."
                 + System.lineSeparator()
-                + "Result find by name: Item{id=1, name='Find'}"
+                + "Result find by name: "
+                + item1
                 + System.lineSeparator()
-                + "Result find by name: Item{id=2, name='Find'}"
+                + "Result find by name: "
+                + item2
                 + System.lineSeparator()
                 + "Menu."
                 + System.lineSeparator()
@@ -159,7 +161,8 @@ public class StartUITest {
                 + System.lineSeparator()
                 + "1. Exit Program."
                 + System.lineSeparator()
-                + "Result find by id: Item{id=1, name='FindId'}"
+                + "Result find by id: "
+                + item
                 + System.lineSeparator()
                 + "Menu."
                 + System.lineSeparator()
