@@ -9,22 +9,22 @@ public class StartUITest {
 
     @Test
     public void whenCreateItem() {
-        Output output = new ConsoleOutput();
+        Output out = new ConsoleOutput();
         Input in = new StubInput(
                 new String[] {"0", "Item name", "1"}
         );
         Tracker tracker = new Tracker();
         UserAction[] actions = {
-                new CreateAction(output),
-                new ExitProgram(output)
+                new CreateAction(out),
+                new ExitProgram(out)
         };
-        new StartUI(output).init(in, tracker, actions);
+        new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findAll()[0].getName(), is("Item name"));
     }
 
     @Test
     public void whenReplaceItem() {
-        Output output = new ConsoleOutput();
+        Output out = new ConsoleOutput();
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Replaced item"));
         String replacedName = "New item name";
@@ -32,10 +32,10 @@ public class StartUITest {
                 new String[] {"0", String.valueOf(item.getId()), replacedName, "1"}
         );
         UserAction[] actions = {
-                new ReplaceAction(output),
-                new ExitProgram(output)
+                new ReplaceAction(out),
+                new ExitProgram(out)
         };
-        new StartUI(output).init(in, tracker, actions);
+        new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
     }
 
@@ -171,5 +171,28 @@ public class StartUITest {
                 + "1. Exit Program."
                 + System.lineSeparator();
         assertThat(out.toString(), is(menu));
+    }
+
+    @Test
+    public void whenInvalidExit() {
+        Output out = new StubOutput();
+        /* Пункты меню: неверный, верный.*/
+        Input in = new StubInput(
+                new String[] {"9", "0"}
+        );
+        Tracker tracker = new Tracker();
+        UserAction[] actions = {
+                new ExitProgram(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        assertThat(out.toString(), is(
+                String.format(
+                        "Menu.%n"
+                                + "0. Exit Program.%n"
+                                + "Wrong input, you can select: 0 .. 0%n"
+                                + "Menu.%n"
+                                + "0. Exit Program.%n"
+                )
+        ));
     }
 }
