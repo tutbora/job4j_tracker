@@ -10,9 +10,6 @@ public class UserStore {
                 break;
             }
         }
-        if (login.length() < 3) {
-            throw new UserInvalidException("Username less than 3 characters");
-        }
         if (rsl == null) {
             throw new UserNotFoundException("User not found");
         }
@@ -20,9 +17,9 @@ public class UserStore {
     }
 
     public static boolean validate(User user) throws UserInvalidException {
-//        if (user.getUsername().length() < 3) {
-//            throw new UserInvalidException("Username less than 3 characters");
-//        }
+        if (user.getUsername().length() < 3) {
+            throw new UserInvalidException("Username less than 3 characters");
+        }
         if (!user.isValid()) {
             throw new UserInvalidException("User invalid");
         }
