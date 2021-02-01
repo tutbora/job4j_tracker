@@ -7,7 +7,7 @@ public class ExitProgram implements UserAction {
 
     @Override
     public String name() {
-        return "Exit Program.";
+        return "Exit Program." + System.lineSeparator();
     }
 
     @Override
