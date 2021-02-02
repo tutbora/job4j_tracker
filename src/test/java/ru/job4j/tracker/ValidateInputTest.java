@@ -19,13 +19,24 @@ public class ValidateInputTest {
     }
 
     @Test
-    public void whenNegativeInput() {
+    public void whenPositiveMoreInput() {
         Output out = new StubOutput();
         Input in = new StubInput(
-                new String[] {"2", "-5", "1"}
+                new String[] {"2", "5", "1"}
         );
         ValidateInput input = new ValidateInput(out, in);
         int selected = input.askInt("Enter menu:");
         assertThat(selected, is(2));
+    }
+
+    @Test
+    public void whenNegativeInput() {
+        Output out = new StubOutput();
+        Input in = new StubInput(
+                new String[] {"one", "-5"}
+        );
+        ValidateInput input = new ValidateInput(out, in);
+        int selected = input.askInt("Enter menu:");
+        assertThat(selected, is(-5));
     }
 }

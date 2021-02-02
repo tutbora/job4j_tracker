@@ -21,7 +21,6 @@ public class ValidateInput implements Input {
         do {
             try {
                 value = in.askInt(question);
-                //value = Integer.parseInt(in.askStr(question));
                 invalid = false;
             } catch (NumberFormatException nfe) {
                 out.println("Please enter validate data again.");
