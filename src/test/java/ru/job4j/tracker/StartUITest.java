@@ -78,7 +78,7 @@ public class StartUITest {
     public void whenShowAllItems() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        Item item1 = tracker.add(new Item("ShowAllItems item"));
+        Item item = tracker.add(new Item("ShowAllItems item"));
         Input in = new StubInput(
                 new String[] {"0", "1"}
         );
@@ -96,7 +96,7 @@ public class StartUITest {
                 + System.lineSeparator()
                 + "Total items: 1"
                 + System.lineSeparator()
-                + item1
+                + item
                 + System.lineSeparator()
                 + "Menu."
                 + System.lineSeparator()

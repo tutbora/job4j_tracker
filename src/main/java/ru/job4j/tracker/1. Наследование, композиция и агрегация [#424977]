@@ -1,0 +1,18 @@
+Item
+Tracker
+StartUI
+Input(interface) - implements interface
+-> ConsoleInput
+-> StubInput
+-> ValidateInput
+Output(interface) - implements interface
+-> ConsoleOutput
+-> StubOutput
+UserAction(interface) - implements interface
+-> CreateAction
+-> DeleteItem
+-> ExitProgram
+-> FindById
+-> FindByName
+-> ReplaceAction
+-> ShowAllItems
