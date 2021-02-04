@@ -1,14 +1,32 @@
-Item
-Tracker
-StartUI
-Input(interface) - implements interface
+Item -> Tracker - агрегация
+Item -> StartUI - агрегация
+Item -> UserAction(interface) - агрегация
+Tracker -> UserAction(interface) - агрегация
+StartUI -> UserAction(interface) - агрегация
+
+StartUI -> композиция
+public StartUI(Output out)
+public void init(Input input, Tracker tracker, UserAction[] actions)
+private void showMenu(UserAction[] actions)
+public static void main(String[] args)
+
+Tracker -> композиция
+public Item add(Item item)
+public Item[] findAll()
+public Item[] findByName(String key)
+public Item findById(int id)
+private int indexOf(int id)
+public boolean replace(int id, Item bugWithDesc)
+public boolean delete(int id)
+
+Input(interface): - наследование, хотя наследование по extends
 -> ConsoleInput
 -> StubInput
 -> ValidateInput
-Output(interface) - implements interface
+Output(interface): - наследование, хотя наследование по extends
 -> ConsoleOutput
 -> StubOutput
-UserAction(interface) - implements interface
+UserAction(interface): - наследование, хотя наследование по extends
 -> CreateAction
 -> DeleteItem
 -> ExitProgram
