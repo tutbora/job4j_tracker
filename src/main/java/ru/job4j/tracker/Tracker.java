@@ -8,7 +8,7 @@ public final class Tracker {
     private int size = 0;
     private static Tracker tracker = null;
 
-    private Tracker() {
+    protected Tracker() {
     }
 
     public static Tracker getTracker() {
