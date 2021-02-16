@@ -22,6 +22,15 @@ public class PhoneDictionary {
             if (persons.get(i).getName().contains(key)) {
                 result = persons;
             }
+            if (persons.get(i).getSurname().contains(key)) {
+                result = persons;
+            }
+            if (persons.get(i).getPhone().contains(key)) {
+                result = persons;
+            }
+            if (persons.get(i).getAddress().contains(key)) {
+                result = persons;
+            }
         }
         return result;
     }
