@@ -8,9 +8,7 @@ public class ConvertMatrix2List {
         List<Integer> list = new ArrayList<>();
         for (int[] row : array) {
             for (int cell : row) {
-                if (cell <= array.length + row.length) {
-                    list.add(cell);
-                }
+                list.add(cell);
             }
         }
         return list;
