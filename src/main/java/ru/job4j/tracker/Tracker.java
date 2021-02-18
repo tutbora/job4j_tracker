@@ -1,11 +1,11 @@
 package ru.job4j.tracker;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class Tracker {
-    private final Item[] items = new Item[100];
+    private final List<Item> items = new ArrayList<>();
     private int ids = 1;
-    private int size = 0;
     private static Tracker tracker = null;
 
     protected Tracker() {
@@ -20,38 +20,38 @@ public final class Tracker {
 
     public Item add(Item item) {
         item.setId(ids++);
-        items[size++] = item;
+        items.add(item);
         return item;
     }
 
-    public Item[] findAll() {
-        return Arrays.copyOf(items, size);
+    public List<Item> findAll() {
+        return items;
     }
 
-    public Item[] findByName(String key) {
-        Item[] rsl = new Item[size];
-        int count = 0;
-        for (int index = 0; index < size; index++) {
-            Item item = this.items[index];
-            if (item.getName().equals(key)) {
-                rsl[count++] = item;
+    public List<Item> findByName(String key) {
+        List<Item> rsl = new ArrayList<>();
+        for (Item it : items) {
+            if (it.getName().contains(key)) {
+                rsl.add(it);
             }
         }
-        return Arrays.copyOf(rsl, count);
+        return rsl;
     }
 
     public Item findById(int id) {
         int index = indexOf(id);
-        return index != -1 ? items[index] : null;
+        return index != -1 ? items.get(index) : null;
     }
 
     private int indexOf(int id) {
         int rsl = -1;
-        for (int index = 0; index < size; index++) {
-            if (items[index].getId() == id) {
+        int index = 0;
+        for (Item it : items) {
+            if (it.getId() == id) {
                 rsl = index;
                 break;
             }
+            index++;
         }
         return rsl;
     }
@@ -61,7 +61,7 @@ public final class Tracker {
         boolean rsl = finder != -1;
         if (rsl) {
             bugWithDesc.setId(id);
-            items[finder] = bugWithDesc;
+            items.set(finder, bugWithDesc);
             }
                 return rsl;
     }
@@ -70,12 +70,7 @@ public final class Tracker {
         int index = indexOf(id);
         boolean rsl = index != -1;
         if (index != -1) {
-            items[index] = null;
-            int startPos = index + 1;
-            int length = size - startPos;
-            System.arraycopy(items, startPos, items, index, length);
-            items[size - 1] = null;
-            size--;
+            items.remove(index);
         }
             return rsl;
     }
