@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.core.Is.is;
@@ -38,7 +39,10 @@ public class StartUITest {
         actions.add(new ReplaceAction(out));
         actions.add(new ExitProgram(out));
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
+        //assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
+        assertThat(Objects.requireNonNull(tracker
+                .findById(item.getId()))
+                .getName(), is(replacedName));
     }
 
     @Test
@@ -55,6 +59,7 @@ public class StartUITest {
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
+
     @Test
     public void whenExitProgram() {
         Output out = new StubOutput();
@@ -66,7 +71,7 @@ public class StartUITest {
                 actions.add(new ExitProgram(out));
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(System.lineSeparator()
-                        +"Menu."
+                        + "Menu."
                         + System.lineSeparator()
                         + "0. Exit Program."
                         + System.lineSeparator()
