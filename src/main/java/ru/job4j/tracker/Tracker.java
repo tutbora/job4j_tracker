@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Tracker {
-    private final List<Item> items = new ArrayList<>();
-    private int ids = 1;
     private static Tracker tracker = null;
+    private int ids = 1;
+    private final List<Item> items = new ArrayList<>();
 
     protected Tracker() {
     }
