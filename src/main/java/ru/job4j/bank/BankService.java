@@ -7,19 +7,15 @@ public class BankService {
 
     public void addUser(User user) {
         ArrayList<Account> list = new ArrayList<>();
-        if (!users.containsKey(user)) {
-            users.put(user, list);
-        }
+        users.putIfAbsent(user, list);
     }
 
     public void addAccount(String passport, Account account) {
         User rsl = findByPassport(passport);
         if (rsl != null) {
             List<Account> list = users.get(rsl);
-            if (list != null) {
-                if (!list.contains(account)) {
+            if (!list.contains(account)) {
                     list.add(account);
-                }
             }
         }
     }
