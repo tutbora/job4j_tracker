@@ -5,29 +5,51 @@ import java.util.*;
 public class Actions {
     private final Map<Unit, List<Account>> units = new HashMap<>();
 
-    private static int randomActions(int actions) {
-        int rsl = 0;
-        Random rand = new Random();
-        if (actions == 2) {
-            rsl = rand.nextInt(actions);
-        }
-        if (actions == 3) {
-            rsl = rand.nextInt(actions);
-        }
-        return rsl + 1;
-    }
-
     public void addUnit(Unit unit) {
-        ArrayList<Account> list = new ArrayList<>();
-        units.putIfAbsent(unit, list);
+        ArrayList<Account> accounts = new ArrayList<>();
+        units.putIfAbsent(unit, accounts);
     }
 
-    public Unit findByPosition(String position) {
+    public Actions addGroup(int group) {
+        return CreateArena.account(group);
+    }
+
+    public Unit findByRace(String race) {
         for (var find : units.keySet()) {
-            if (find.getPosition().equals(position)) {
+            if (find.getRace().equals(race)) {
                 return find;
             }
         }
         return null;
+    }
+
+    public Account findByUnitName(
+            String race, String unitName) {
+        Unit rsl = findByRace(race);
+        if (rsl != null) {
+            List<Account> accounts = units.get(rsl);
+            for (var unitAccounts : accounts) {
+                if (unitAccounts.getUnitName().contains(unitName)) {
+                    return unitAccounts;
+                }
+            }
+        }
+        return null;
+    }
+
+    public void addAccount(String race, Account account) {
+        Unit rsl = findByRace(race);
+        if (rsl != null) {
+            List<Account> list = units.get(rsl);
+            if (!list.contains(account)) {
+                list.add(account);
+            }
+        }
+    }
+
+    public void battle() {
+        Account account = new Account();
+        Actions group1 = addGroup(1);
+        Actions group2 = addGroup(2);
     }
 }

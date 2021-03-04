@@ -8,25 +8,53 @@ import static org.junit.Assert.*;
 public class ActionsTest {
 
     @Test
-    public void whenAddUnit() {
-        Unit unit1 = new Unit("001", "Elf Wizard");
-        Unit unit2 = new Unit("002", "Elf Archer");
-        Unit unit3 = new Unit("003", "Elf Archer");
-        Unit unit4 = new Unit("004", "Elf Archer");
-        Unit unit5 = new Unit("005", "Elf Warrior");
-        Unit unit6 = new Unit("006", "Elf Warrior");
-        Unit unit7 = new Unit("007", "Elf Warrior");
-        Unit unit8 = new Unit("008", "Elf Warrior");
+    public void whenAddRace() {
+        Unit unit1 = new Unit("Elf");
+        Unit unit2 = new Unit("Human");
+        Unit unit3 = new Unit("Orc");
+        Unit unit4 = new Unit("Undead");
         Actions actions = new Actions();
         actions.addUnit(unit1);
         actions.addUnit(unit2);
         actions.addUnit(unit3);
         actions.addUnit(unit4);
-        actions.addUnit(unit5);
-        actions.addUnit(unit6);
-        actions.addUnit(unit7);
-        actions.addUnit(unit8);
-        actions.addUnit(unit1);
-        assertThat(actions.findByPosition("001"), is(unit1));
+        assertThat(actions.findByRace("Elf"), is(unit1));
+    }
+
+    @Test
+    public void whenFindAddRace() {
+        Actions actions = new Actions();
+        actions.addGroup(1);
+        assertThat(actions.findByRace("Elf"), is("Elf"));
+    }
+
+    @Test
+    public void whenAddAccount() {
+        Unit unit = new Unit("Elf");
+        Actions actions = new Actions();
+        actions.addUnit(unit);
+        actions.addAccount(unit.getRace(), new Account("wizard", 100, 2, 1, false));
+        actions.addAccount(unit.getRace(), new Account("archer1", 100, 2, 1, false));
+        actions.addAccount(unit.getRace(), new Account("archer2", 100, 2, 1, false));
+        actions.addAccount(unit.getRace(), new Account("archer3", 100, 2, 1, false));
+        actions.addAccount(unit.getRace(), new Account("warrior1", 100, 1, 1, false));
+        actions.addAccount(unit.getRace(), new Account("warrior2", 100, 1, 1, false));
+        actions.addAccount(unit.getRace(), new Account("warrior3", 100, 1, 1, false));
+        actions.addAccount(unit.getRace(), new Account("warrior4", 100, 1, 1, false));
+        assertThat(actions.findByUnitName("Elf", "archer1").getHealth(), is(100));
+    }
+
+    @Test
+    public void whenAddGroupElf() {
+    Actions actions = new Actions();
+    var acc = actions.addGroup(1);
+    assertThat(acc.findByUnitName("Elf", "archer1").getHealth(), is(100));
+    }
+
+    @Test
+    public void whenAddGroupOrc() {
+        Actions actions = new Actions();
+        var acc = actions.addGroup(2);
+        assertThat(acc.findByUnitName("Orc", "goblin4").getHealth(), is(100));
     }
 }

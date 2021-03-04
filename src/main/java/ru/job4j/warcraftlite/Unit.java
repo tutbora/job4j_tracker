@@ -1,27 +1,21 @@
 package ru.job4j.warcraftlite;
 
 public class Unit {
-    private String position;
-    private String unitName;
+    private String race;
 
-    public Unit(String position, String unitName) {
-        this.position = position;
-        this.unitName = unitName;
+    public Unit() {
     }
 
-    public String getPosition() {
-        return position;
+    public Unit(String race) {
+        this.race = race;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public String getRace() {
+        return race;
     }
 
-    public String getUnitName() {
-        return unitName;
-    }
-
-    public void setUnitName(String unitName) {
-        this.unitName = unitName;
+    public void setRace(String race) {
+        this.race = race;
     }
 }
+

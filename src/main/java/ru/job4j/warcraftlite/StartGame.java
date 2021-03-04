@@ -8,7 +8,7 @@ public class StartGame {
     public StartGame() {
     }
 
-    private static int randomActions(int actions) {
+    public static int randomActions(int actions) {
         int rsl = 0;
         Random rand = new Random();
         if (actions == 2) {
