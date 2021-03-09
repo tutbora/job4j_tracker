@@ -3,31 +3,31 @@ package ru.job4j.warher;
 import java.util.Objects;
 
 public class UserW {
-    private String passportGroup;
-    private String usernameRace;
+    private String group;
+    private String race;
 
     public UserW() {
     }
 
-    public UserW(String passportGroup, String usernameRace) {
-        this.passportGroup = passportGroup;
-        this.usernameRace = usernameRace;
+    public UserW(String group, String race) {
+        this.group = group;
+        this.race = race;
     }
 
-    public String getPassportGroup() {
-        return passportGroup;
+    public String getGroup() {
+        return group;
     }
 
-    public void setPassportGroup(String passportGroup) {
-        this.passportGroup = passportGroup;
+    public void setGroup(String group) {
+        this.group = group;
     }
 
-    public String getUsernameRace() {
-        return usernameRace;
+    public String getRace() {
+        return race;
     }
 
-    public void setUsernameRace(String usernameRace) {
-        this.usernameRace = usernameRace;
+    public void setRace(String race) {
+        this.race = race;
     }
 
     @Override
@@ -39,11 +39,11 @@ public class UserW {
             return false;
         }
         UserW userW = (UserW) o;
-        return Objects.equals(passportGroup, userW.passportGroup);
+        return Objects.equals(group, userW.group);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(passportGroup);
+        return Objects.hash(group);
     }
 }

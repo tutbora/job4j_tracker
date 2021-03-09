@@ -25,19 +25,19 @@ public class BankServiceW {
 
     public UserW findByPassport(String passport) {
         for (var find : users.keySet()) {
-            if (find.getPassportGroup().equals(passport)) {
+            if (find.getGroup().equals(passport)) {
                 return find;
             }
         }
         return null;
     }
 
-    public AccountW findByRequisite(String passport, String requisite) {
+    public AccountW findByRequisite(String passport, int requisite) {
         UserW rsl = findByPassport(passport);
         if (rsl != null) {
             List<AccountW> accountWS = users.get(rsl);
             for (var userAccount : accountWS) {
-                if (userAccount.getRequisiteNUnit().contains(requisite)) {
+                if (userAccount.getReqUnit() == (requisite)) {
                     return userAccount;
                 }
             }
@@ -45,27 +45,27 @@ public class BankServiceW {
         return null;
     }
 
-    public boolean transferMoney(String srcPassport, String srcRequisite,
-                                 String destPassport, String destRequisite, double amount) {
+    public boolean transferMoney(String srcPassport, int srcRequisite,
+                                 String destPassport, int destRequisite, double amount) {
     var userSrcReq = findByRequisite(srcPassport, srcRequisite);
     var userDestReq = findByRequisite(destPassport, destRequisite);
     if (userSrcReq != null && userDestReq != null) {
-        if (userSrcReq.getBalanceHealth() >= amount) {
-            userSrcReq.setBalanceHealth(userSrcReq.getBalanceHealth() - amount);
-            userDestReq.setBalanceHealth(userDestReq.getBalanceHealth() + amount);
+        if (userSrcReq.getHealth() >= amount) {
+            userSrcReq.setHealth(userSrcReq.getHealth() - amount);
+            userDestReq.setHealth(userDestReq.getHealth() + amount);
             return true;
         }
     }
         return false;
     }
 
-    public boolean fight(String srcPassport, String srcRequisite,
-                                 String destPassport, String destRequisite) {
+    public boolean fight(String srcPassport, int srcRequisite,
+                                 String destPassport, int destRequisite) {
         var userSrcReq = findByRequisite(srcPassport, srcRequisite);
         var userDestReq = findByRequisite(destPassport, destRequisite);
         if (userSrcReq != null && userDestReq != null) {
-            if (userSrcReq.getBalanceHealth() > 0 && userDestReq.getBalanceHealth() > 0) {
-                userDestReq.setBalanceHealth(userDestReq.getBalanceHealth() - userSrcReq.getDamage());
+            if (userSrcReq.getHealth() > 0 && userDestReq.getHealth() > 0) {
+                userDestReq.setHealth(userDestReq.getHealth() - userSrcReq.getDamage());
                 return true;
             }
         }

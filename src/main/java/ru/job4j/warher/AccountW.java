@@ -3,37 +3,37 @@ package ru.job4j.warher;
 import java.util.Objects;
 
 public class AccountW {
-    private String requisiteNUnit;
-    private double balanceHealth;
+    private int reqUnit;
+    private double health;
     private double damage;
     private int priority;
     private boolean ill;
     private String unit;
 
     public AccountW(
-            String requisiteNUnit, double balanceHealth, double damage, int priority, boolean ill, String unit) {
-        this.requisiteNUnit = requisiteNUnit;
-        this.balanceHealth = balanceHealth;
+            int reqUnit, double health, double damage, int priority, boolean ill, String unit) {
+        this.reqUnit = reqUnit;
+        this.health = health;
         this.damage = damage;
         this.priority = priority;
         this.ill = ill;
         this.unit = unit;
     }
 
-    public String getRequisiteNUnit() {
-        return requisiteNUnit;
+    public int getReqUnit() {
+        return reqUnit;
     }
 
-    public void setRequisiteNUnit(String requisiteNUnit) {
-        this.requisiteNUnit = requisiteNUnit;
+    public void setReqUnit(int reqUnit) {
+        this.reqUnit = reqUnit;
     }
 
-    public double getBalanceHealth() {
-        return balanceHealth;
+    public double getHealth() {
+        return health;
     }
 
-    public void setBalanceHealth(double balanceHealth) {
-        this.balanceHealth = balanceHealth;
+    public void setHealth(double health) {
+        this.health = health;
     }
 
     public double getDamage() {
@@ -77,11 +77,11 @@ public class AccountW {
             return false;
         }
         AccountW accountW = (AccountW) o;
-        return Objects.equals(requisiteNUnit, accountW.requisiteNUnit);
+        return Objects.equals(reqUnit, accountW.reqUnit);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(requisiteNUnit);
+        return Objects.hash(reqUnit);
     }
 }

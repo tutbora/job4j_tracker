@@ -1,5 +1,6 @@
 package ru.job4j.warher;
 
+import java.util.LinkedHashSet;
 import java.util.Random;
 
 public class CreateArena {
@@ -18,63 +19,91 @@ public class CreateArena {
         return rsl;
     }
 
+    public static int[] randomGroup(int actions) {
+        LinkedHashSet<Integer> test = new LinkedHashSet<Integer>();
+        Random random = new Random();
+        int[] rsl = new int[actions];
+        int ii = 0;
+        do {
+            test.add(random.nextInt(actions) + 1);
+        }
+        while (test.size() != actions);
+        for (var i : test) {
+            rsl[ii] = (int) i;
+            ii++;
+        }
+        return rsl;
+    }
+
     public static BankServiceW groups(int choice) {
         int fromRandom = randomNumber(choice);
         int fromRandom2 = randomNumber(choice + 1);
         BankServiceW bank = new BankServiceW();
+        UserW user;
         if (fromRandom == 1) {
-            UserW user = new UserW("1111", "Elf");
+            user = new UserW("1111", "Elf");
             bank.addUser(user);
-            bank.addAccount(user.getPassportGroup(), new AccountW("01", 100, 0, 1, true, "wizard"));
-            bank.addAccount(user.getPassportGroup(), new AccountW("02", 100, 7, 1, true, "archer1"));
-            bank.addAccount(user.getPassportGroup(), new AccountW("03", 100, 7, 1, true, "archer2"));
-            bank.addAccount(user.getPassportGroup(), new AccountW("04", 100, 7, 1, true, "archer3"));
-            bank.addAccount(user.getPassportGroup(), new AccountW("05", 100, 15, 1, true, "warrior1"));
-            bank.addAccount(user.getPassportGroup(), new AccountW("06", 100, 15, 1, true, "warrior2"));
-            bank.addAccount(user.getPassportGroup(), new AccountW("07", 100, 15, 1, true, "warrior3"));
-            bank.addAccount(user.getPassportGroup(), new AccountW("08", 100, 15, 1, true, "warrior4"));
+            bank.addAccount(user.getGroup(), new AccountW(1, 100, 0, 1, true, "wizard"));
+            bank.addAccount(user.getGroup(), new AccountW(2, 100, 7, 1, true, "archer1"));
+            bank.addAccount(user.getGroup(), new AccountW(3, 100, 7, 1, true, "archer2"));
+            bank.addAccount(user.getGroup(), new AccountW(4, 100, 7, 1, true, "archer3"));
+            bank.addAccount(user.getGroup(), new AccountW(5, 100, 15, 1, true, "warrior1"));
+            bank.addAccount(user.getGroup(), new AccountW(6, 100, 15, 1, true, "warrior2"));
+            bank.addAccount(user.getGroup(), new AccountW(7, 100, 15, 1, true, "warrior3"));
+            bank.addAccount(user.getGroup(), new AccountW(8, 100, 15, 1, true, "warrior4"));
         }
         if (fromRandom == 2) {
-            UserW user2 = new UserW("2222", "Human");
-            bank.addUser(user2);
-            bank.addAccount(user2.getPassportGroup(), new AccountW("01", 100, 0, 1, true, "wizard"));
-            bank.addAccount(user2.getPassportGroup(), new AccountW("02", 100, 5, 1, true, "arbalester1"));
-            bank.addAccount(user2.getPassportGroup(), new AccountW("03", 100, 5, 1, true, "arbalester1"));
-            bank.addAccount(user2.getPassportGroup(), new AccountW("04", 100, 5, 1, true, "arbalester1"));
-            bank.addAccount(user2.getPassportGroup(), new AccountW("05", 100, 18, 1, true, "warrior1"));
-            bank.addAccount(user2.getPassportGroup(), new AccountW("06", 100, 18, 1, true, "warrior2"));
-            bank.addAccount(user2.getPassportGroup(), new AccountW("07", 100, 18, 1, true, "warrior3"));
-            bank.addAccount(user2.getPassportGroup(), new AccountW("08", 100, 18, 1, true, "warrior4"));
+            user = new UserW("1111", "Human");
+            bank.addUser(user);
+            bank.addAccount(user.getGroup(), new AccountW(1, 100, 0, 1, true, "wizard"));
+            bank.addAccount(user.getGroup(), new AccountW(2, 100, 5, 1, true, "arbalester1"));
+            bank.addAccount(user.getGroup(), new AccountW(3, 100, 5, 1, true, "arbalester2"));
+            bank.addAccount(user.getGroup(), new AccountW(4, 100, 5, 1, true, "arbalester3"));
+            bank.addAccount(user.getGroup(), new AccountW(5, 100, 18, 1, true, "warrior1"));
+            bank.addAccount(user.getGroup(), new AccountW(6, 100, 18, 1, true, "warrior2"));
+            bank.addAccount(user.getGroup(), new AccountW(7, 100, 18, 1, true, "warrior3"));
+            bank.addAccount(user.getGroup(), new AccountW(8, 100, 18, 1, true, "warrior4"));
         }
         if (fromRandom2 == 3) {
-            UserW user3 = new UserW("3333", "Orc");
-            bank.addUser(user3);
-            bank.addAccount(user3.getPassportGroup(), new AccountW("01", 100, 0, 1, true, "shaman"));
-            bank.addAccount(user3.getPassportGroup(), new AccountW("02", 100, 3, 1, true, "archer1"));
-            bank.addAccount(user3.getPassportGroup(), new AccountW("03", 100, 3, 1, true, "archer2"));
-            bank.addAccount(user3.getPassportGroup(), new AccountW("04", 100, 3, 1, true, "archer3"));
-            bank.addAccount(user3.getPassportGroup(), new AccountW("05", 100, 20, 1, true, "goblin1"));
-            bank.addAccount(user3.getPassportGroup(), new AccountW("06", 100, 20, 1, true, "goblin2"));
-            bank.addAccount(user3.getPassportGroup(), new AccountW("07", 100, 20, 1, true, "goblin3"));
-            bank.addAccount(user3.getPassportGroup(), new AccountW("08", 100, 20, 1, true, "goblin4"));
+            user = new UserW("2222", "Orc");
+            bank.addUser(user);
+            bank.addAccount(user.getGroup(), new AccountW(1, 100, 0, 1, true, "shaman"));
+            bank.addAccount(user.getGroup(), new AccountW(2, 100, 3, 1, true, "archer1"));
+            bank.addAccount(user.getGroup(), new AccountW(3, 100, 3, 1, true, "archer2"));
+            bank.addAccount(user.getGroup(), new AccountW(4, 100, 3, 1, true, "archer3"));
+            bank.addAccount(user.getGroup(), new AccountW(5, 100, 20, 1, true, "goblin1"));
+            bank.addAccount(user.getGroup(), new AccountW(6, 100, 20, 1, true, "goblin2"));
+            bank.addAccount(user.getGroup(), new AccountW(7, 100, 20, 1, true, "goblin3"));
+            bank.addAccount(user.getGroup(), new AccountW(8, 100, 20, 1, true, "goblin4"));
         }
         if (fromRandom2 == 4) {
-            UserW user4 = new UserW("4444", "Undead");
-            bank.addUser(user4);
-            bank.addAccount(user4.getPassportGroup(), new AccountW("01", 100, 0, 1, true, "necromancer"));
-            bank.addAccount(user4.getPassportGroup(), new AccountW("02", 100, 4, 1, true, "hunter1"));
-            bank.addAccount(user4.getPassportGroup(), new AccountW("03", 100, 4, 1, true, "hunter2"));
-            bank.addAccount(user4.getPassportGroup(), new AccountW("04", 100, 4, 1, true, "hunter3"));
-            bank.addAccount(user4.getPassportGroup(), new AccountW("05", 100, 18, 1, true, "zombie1"));
-            bank.addAccount(user4.getPassportGroup(), new AccountW("06", 100, 18, 1, true, "zombie2"));
-            bank.addAccount(user4.getPassportGroup(), new AccountW("07", 100, 18, 1, true, "zombie3"));
-            bank.addAccount(user4.getPassportGroup(), new AccountW("08", 100, 18, 1, true, "zombie4"));
+            user = new UserW("2222", "Undead");
+            bank.addUser(user);
+            bank.addAccount(user.getGroup(), new AccountW(1, 100, 0, 1, true, "necromancer"));
+            bank.addAccount(user.getGroup(), new AccountW(2, 100, 4, 1, true, "hunter1"));
+            bank.addAccount(user.getGroup(), new AccountW(3, 100, 4, 1, true, "hunter2"));
+            bank.addAccount(user.getGroup(), new AccountW(4, 100, 4, 1, true, "hunter3"));
+            bank.addAccount(user.getGroup(), new AccountW(5, 100, 18, 1, true, "zombie1"));
+            bank.addAccount(user.getGroup(), new AccountW(6, 100, 18, 1, true, "zombie2"));
+            bank.addAccount(user.getGroup(), new AccountW(7, 100, 18, 1, true, "zombie3"));
+            bank.addAccount(user.getGroup(), new AccountW(8, 100, 18, 1, true, "zombie4"));
         }
         return bank;
     }
 
     public static void main(String[] args) {
-        BankServiceW bank = CreateArena.groups(1);
-
+        LinkedHashSet<Integer> test = new LinkedHashSet<Integer>();
+        Random random = new Random();
+        int actions = 8;
+        int[] rsl = new int[actions];
+        int ii = 0;
+        do {
+            test.add(random.nextInt(actions) + 1);
+        }
+        while (test.size() != actions);
+        for (var i : test) {
+            rsl[ii] = (int) i;
+            ii++;
+        }
     }
 }

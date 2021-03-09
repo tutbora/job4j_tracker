@@ -9,7 +9,7 @@ import static org.junit.Assert.assertThat;
 public class BankServiceWTest {
 
     @Test
-    public void addUser() {
+    public void whenAddUser() {
         UserW user = new UserW("1111", "Elf");
         UserW user2 = new UserW("2222", "Human");
         BankServiceW bank = new BankServiceW();
@@ -24,8 +24,8 @@ public class BankServiceWTest {
         UserW user = new UserW("1111", "Elf");
         BankServiceW bank = new BankServiceW();
         bank.addUser(user);
-        bank.addAccount(user.getPassportGroup(), new AccountW("01", 150D, 15, 1, true, "wizard"));
-        assertNull(bank.findByRequisite("34", "01"));
+        bank.addAccount(user.getGroup(), new AccountW(1, 150D, 15, 1, true, "wizard"));
+        assertNull(bank.findByRequisite("34", 1));
     }
 
     @Test
@@ -33,8 +33,8 @@ public class BankServiceWTest {
         UserW user = new UserW("1111", "Elf");
         BankServiceW bank = new BankServiceW();
         bank.addUser(user);
-        bank.addAccount(user.getPassportGroup(), new AccountW("01", 150D, 15, 1, true, "wizard"));
-        assertThat(bank.findByRequisite("1111", "01").getBalanceHealth(), is(150D));
+        bank.addAccount(user.getGroup(), new AccountW(1, 150D, 15, 1, true, "wizard"));
+        assertThat(bank.findByRequisite("1111", 1).getHealth(), is(150D));
     }
 
     @Test
@@ -42,9 +42,9 @@ public class BankServiceWTest {
         UserW user = new UserW("1111", "Elf");
         BankServiceW bank = new BankServiceW();
         bank.addUser(user);
-        bank.addAccount(user.getPassportGroup(), new AccountW("01", 150D, 15, 1, true, "wizard"));
-        bank.addAccount(user.getPassportGroup(), new AccountW("02", 150D, 15, 1, true, "wizard"));
-        assertThat(bank.findByRequisite("1111", "02").getBalanceHealth(), is(150D));
+        bank.addAccount(user.getGroup(), new AccountW(1, 150D, 15, 1, true, "wizard"));
+        bank.addAccount(user.getGroup(), new AccountW(2, 150D, 15, 1, true, "wizard"));
+        assertThat(bank.findByRequisite("1111", 2).getHealth(), is(150D));
     }
 
     @Test
@@ -57,11 +57,11 @@ public class BankServiceWTest {
         //bank.addAccount(user.getPassportGroup(), new AccountW("5546", 150D));
         //bank.addAccount(user.getPassportGroup(), new AccountW("113", 50D));
         bank.addAccount(
-                user.getPassportGroup(), new AccountW("01", 150D, 15, 1, true, "wizard"));
+                user.getGroup(), new AccountW(1, 150D, 15, 1, true, "wizard"));
         bank.addAccount(
-                user2.getPassportGroup(), new AccountW("02", 50D, 15, 1, true, "wizard"));
-        bank.transferMoney(user.getPassportGroup(), "01", user2.getPassportGroup(), "02", 150D);
-        assertThat(bank.findByRequisite(user2.getPassportGroup(), "02").getBalanceHealth(), is(200D));
+                user2.getGroup(), new AccountW(2, 50D, 15, 1, true, "wizard"));
+        bank.transferMoney(user.getGroup(), 1, user2.getGroup(), 2, 150D);
+        assertThat(bank.findByRequisite(user2.getGroup(), 2).getHealth(), is(200D));
     }
 
     @Test
@@ -74,11 +74,11 @@ public class BankServiceWTest {
 //        bank.addAccount(user.getPassportGroup(), new AccountW("5546", 150D));
 //        bank.addAccount(user.getPassportGroup(), new AccountW("113", 50D));
         bank.addAccount(
-                user.getPassportGroup(), new AccountW("01", 150D, 15D, 1, true, "wizard"));
+                user.getGroup(), new AccountW(1, 150D, 15D, 1, true, "wizard"));
         bank.addAccount(
-                user2.getPassportGroup(), new AccountW("02", 50D, 15D, 1, true, "wizard"));
-        bank.transferMoney(user.getPassportGroup(), "01", user2.getPassportGroup(), "02", 100D);
-        assertThat(bank.findByRequisite(user.getPassportGroup(), "01").getBalanceHealth(), is(50D));
+                user2.getGroup(), new AccountW(2, 50D, 15D, 1, true, "wizard"));
+        bank.transferMoney(user.getGroup(), 1, user2.getGroup(), 2, 100D);
+        assertThat(bank.findByRequisite(user.getGroup(), 1).getHealth(), is(50D));
     }
 
     @Test
@@ -89,20 +89,17 @@ public class BankServiceWTest {
         bank.addUser(user);
         bank.addUser(user2);
         bank.addAccount(
-                user.getPassportGroup(), new AccountW("01", 100D, 15D, 1, true, "wizard"));
+                user.getGroup(), new AccountW(1, 100D, 15D, 1, true, "wizard"));
         bank.addAccount(
-                user2.getPassportGroup(), new AccountW("02", 90, 10D, 1, true, "wizard"));
-        bank.fight(user.getPassportGroup(), "01", user2.getPassportGroup(), "02");
-        assertThat(bank.findByRequisite(user2.getPassportGroup(), "02").getBalanceHealth(), is(75D));
+                user2.getGroup(), new AccountW(2, 90, 10D, 1, true, "wizard"));
+        bank.fight(user.getGroup(), 1, user2.getGroup(), 2);
+        assertThat(bank.findByRequisite(user2.getGroup(), 2).getHealth(), is(75D));
     }
 
     @Test
     public void whenCreateArena() {
-        UserW user = new UserW();
-        UserW user2 = new UserW();
         BankServiceW bank = CreateArena.groups(1);
-
-        bank.fight(user.getPassportGroup(), "01", user2.getPassportGroup(), "02");
-        assertThat(bank.findByRequisite(user2.getPassportGroup(), "02").getBalanceHealth(), is(75D));
+        bank.fight("1111", 3, "2222", 6);
+        assertThat(bank.findByRequisite("2222", 6).getHealth(), is(95D));
     }
 }
