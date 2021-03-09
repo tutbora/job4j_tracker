@@ -24,8 +24,8 @@ public class ActionsTest {
     @Test
     public void whenFindAddRace() {
         Actions actions = new Actions();
-        actions.addGroup(1);
-        assertThat(actions.findByRace("Elf"), is("Elf"));
+        var acc = actions.addGroup(1);
+        assertThat(acc.findByRace("Elf"), is("Elf"));
     }
 
     @Test

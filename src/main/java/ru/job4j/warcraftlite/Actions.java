@@ -10,7 +10,7 @@ public class Actions {
         units.putIfAbsent(unit, accounts);
     }
 
-    public Actions addGroup(int group) {
+    public static Actions addGroup(int group) {
         return CreateArena.account(group);
     }
 
@@ -47,8 +47,14 @@ public class Actions {
         }
     }
 
-    public void battle() {
-        Account account = new Account();
+    public void fight() {
+        Actions group1 = addGroup(1);
+        Actions group2 = addGroup(2);
+        Unit unit1 = findByRace("Elf");
+
+    }
+
+    public static void main(String[] args) {
         Actions group1 = addGroup(1);
         Actions group2 = addGroup(2);
     }
