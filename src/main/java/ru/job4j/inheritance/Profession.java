@@ -13,7 +13,8 @@ public class Profession {
     public Profession() {
     }
 
-    public Profession(String name, String surname, String education, int birthday, int salary, byte specialization, byte experience) {
+    public Profession(String name, String surname, String education,
+                      int birthday, int salary, byte specialization, byte experience) {
         this.name = name;
         this.surname = surname;
         this.education = education;

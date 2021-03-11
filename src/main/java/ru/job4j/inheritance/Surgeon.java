@@ -9,7 +9,8 @@ public class Surgeon extends Doctor {
         super(nurse, drugs, uniform, tooling);
     }
 
-    public Surgeon(String nurse, String drugs, String uniform, String tooling, String anesthesia, String operatingRoom, String kindSurgery) {
+    public Surgeon(String nurse, String drugs, String uniform, String tooling,
+                   String anesthesia, String operatingRoom, String kindSurgery) {
         super(nurse, drugs, uniform, tooling);
         this.anesthesia = anesthesia;
         this.operatingRoom = operatingRoom;

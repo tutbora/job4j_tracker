@@ -14,7 +14,9 @@ public class SubjectOfStudy {
     public SubjectOfStudy() {
     }
 
-    public SubjectOfStudy(String detailDrawing, String accessories, String example, String numerals, String theorem, String prose, String poetry, String biography, String essay) {
+    public SubjectOfStudy(String detailDrawing, String accessories, String example,
+                          String numerals, String theorem, String prose, String poetry,
+                          String biography, String essay) {
         this.detailDrawing = detailDrawing;
         this.accessories = accessories;
         this.example = example;

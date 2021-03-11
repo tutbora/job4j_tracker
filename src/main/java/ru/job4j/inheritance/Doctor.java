@@ -9,7 +9,9 @@ public class Doctor extends Profession {
     public Doctor(String nurse, String drugs, String uniform, String tooling) {
     }
 
-    public Doctor(String name, String surname, String education, int birthday, int salary, byte specialization, byte experience, String nurse, String drugs, String uniform, String tooling) {
+    public Doctor(String name, String surname, String education,
+                  int birthday, int salary, byte specialization, byte experience,
+                  String nurse, String drugs, String uniform, String tooling) {
         super(name, surname, education, birthday, salary, specialization, experience);
         this.nurse = nurse;
         this.drugs = drugs;

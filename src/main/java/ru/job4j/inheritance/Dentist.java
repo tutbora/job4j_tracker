@@ -9,7 +9,8 @@ public class Dentist extends Doctor {
         super(nurse, drugs, uniform, tooling);
     }
 
-    public Dentist(String nurse, String drugs, String uniform, String tooling, String citizen, String teeth, String mouthCavity) {
+    public Dentist(String nurse, String drugs, String uniform, String tooling,
+                   String citizen, String teeth, String mouthCavity) {
         super(nurse, drugs, uniform, tooling);
         this.citizen = citizen;
         this.teeth = teeth;

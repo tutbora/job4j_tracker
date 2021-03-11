@@ -12,7 +12,8 @@ public class Diagnosis {
     public Diagnosis() {
     }
 
-    public Diagnosis(int numberOfDocument, byte day, byte month, byte year, String heal, String aspectDiagnosis) {
+    public Diagnosis(int numberOfDocument, byte day, byte month, byte year,
+                     String heal, String aspectDiagnosis) {
         this.numberOfDocument = numberOfDocument;
         this.day = day;
         this.month = month;
