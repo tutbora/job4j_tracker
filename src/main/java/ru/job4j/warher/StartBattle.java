@@ -10,8 +10,9 @@ public class StartBattle {
             round.registerRound(numberRound++);
             round.battleRound1To2();
 
-            round.registerRound(numberRound++);
-            round.battleRound2To1();
+//            round.registerRound(numberRound++);
+//            round.battleRound1To2();
+            //round.battleRound2To1();
         }
     }
 }

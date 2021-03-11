@@ -10,22 +10,49 @@ public class CreateRound {
     }
 
     public void battleRound1To2() {
-            int[] rand1 = BattleServiceW.randomUnit(bank.accountsSize(GROUP1));
-            int[] rand2 = BattleServiceW.randomUnit(bank.accountsSize(GROUP2));
-            for (int i = 0; i < bank.accountsSize(GROUP1); i++) {
-                bank.fight(GROUP1, rand1[i], GROUP2, rand2[i]);
-                toConsole1(i, rand1, rand2);
-            }
-    }
-
-    public void battleRound2To1() {
         int[] rand1 = BattleServiceW.randomUnit(bank.accountsSize(GROUP1));
         int[] rand2 = BattleServiceW.randomUnit(bank.accountsSize(GROUP2));
-            for (int ii = 0; ii < bank.accountsSize(GROUP2); ii++) {
-                bank.fight(GROUP2, rand2[ii], GROUP1, rand1[ii]);
-                toConsole2(ii, rand1, rand2);
+        int a = 0;
+        int ii = 0;
+        for (int j : rand1) {
+            if (bank.accountsSize(GROUP2) > 0 && a > bank.accountsSize(GROUP2) - 1) {
+                a = 0;
             }
+            for (int k = 0; k < 1; k++) {
+                bank.fight(GROUP1, j, GROUP2, rand2[a]);
+                toConsole1(ii++, rand1, rand2);
+                a++;
+            }
+        }
+        rand1 = BattleServiceW.randomUnit(bank.accountsSize(GROUP1));
+        rand2 = BattleServiceW.randomUnit(bank.accountsSize(GROUP2));
+        int b = 0;
+        ii = 0;
+        for (int j : rand2) {
+            if (bank.accountsSize(GROUP1) > 0 && b > bank.accountsSize(GROUP1) - 1) {
+                b = 0;
+            }
+            for (int k = 0; k < 1; k++) {
+                bank.fight(GROUP2, j, GROUP1, rand1[b]);
+                toConsole2(ii++, rand1, rand2);
+                b++;
+            }
+        }
+
+//            for (int i = 0; i < bank.accountsSize(GROUP1); i++) {
+//                bank.fight(GROUP1, rand1[i], GROUP2, rand2[i]);
+//                toConsole1(i, rand1, rand2);
+//            }
     }
+
+//    public void battleRound2To1() {
+//        int[] rand1 = BattleServiceW.randomUnit(bank.accountsSize(GROUP1));
+//        int[] rand2 = BattleServiceW.randomUnit(bank.accountsSize(GROUP2));
+//            for (int ii = 0; ii < bank.accountsSize(GROUP2); ii++) {
+//                bank.fight(GROUP2, rand2[ii], GROUP1, rand1[ii]);
+//                toConsole2(ii, rand1, rand2);
+//            }
+//    }
 
     public void registerBattle() {
         System.out.println(
