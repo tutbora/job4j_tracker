@@ -78,6 +78,13 @@ public class CreateRound {
                 + System.lineSeparator());
     }
 
+    public void win(String win) {
+        System.out.println(System.lineSeparator()
+                + "WIN "
+                + win
+                + System.lineSeparator());
+    }
+
     public void toConsole1(int ii, int[] rand1, int[] rand2) {
         System.out.println(ii + ". "
                 + bank.findByParam(GROUP1, rand1[ii]).getUnit()

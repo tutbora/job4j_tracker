@@ -47,7 +47,7 @@ public class BattleServiceW {
         int[] rsl = new int[actions];
         int ii = 0;
         do {
-            forArray.add(random.nextInt(actions) + 1);
+            forArray.add(random.nextInt(actions));
         }
         while (forArray.size() != actions);
         for (var i : forArray) {
@@ -94,27 +94,27 @@ public class BattleServiceW {
                          String destGroup, int destReqUnit) {
         var userSrcReq = findByParam(srcGroup, srcReqUnit);
         var userDestReq = findByParam(destGroup, destReqUnit);
-        UserW rsl1 = findByGroup(srcGroup);
         UserW rsl2 = findByGroup(destGroup);
-        List<AccountW> accountWS1 = unitsGroup.get(rsl1);
         List<AccountW> accountWS2 = unitsGroup.get(rsl2);
         CreateRound round = new CreateRound();
         if (userSrcReq != null && userDestReq != null) {
-            if (userSrcReq.getHealth() > 0 && userDestReq.getHealth() > 0) {
+            if (userSrcReq.getHealth() > 0 && userDestReq.getHealth() > 0
+                    && userSrcReq.getPriority() > 0 && userDestReq.getPriority() > 0) {
                 userDestReq.setHealth(userDestReq.getHealth() - userSrcReq.getDamage());
                 if (userDestReq.getHealth() <= 0) {
-                    deleteAccount(destGroup, userDestReq.getReqUnit());
+                    userDestReq.setHealth(0);
+                    userDestReq.setPriority(0);
+                    /*win(srcGroup, destGroup);*/
+                    /*accountWS2.remove(destReqUnit);*/
+                    /*deleteAccount(destGroup, userDestReq.getReqUnit());*/
                 }
-                //return true;
+                /*return true;*/
             }
         }
-        if (accountWS1.size() == 0) {
-            round.win(2);
-        }
-        if (accountWS2.size() == 0) {
+/*        if (accountWS2.size() == 0) {
             round.win(1);
-        }
-        return true;
+        }*/
+        return false;
     }
 
     public boolean deleteAccount(String group, int reqUnit) {
@@ -131,12 +131,23 @@ public class BattleServiceW {
         return false;
     }
 
-    public boolean deleteAccountTest(String group, int reqUnit) {
-        UserW rsl = findByGroup(group);
-        if (rsl != null) {
-            List<AccountW> accountWS = unitsGroup.get(rsl);
-            accountWS.remove(reqUnit - 1);
-            return true;
+    public boolean win(String srcGroup, String destGroup) {
+        UserW srcUser = findByGroup(srcGroup);
+        UserW destUser = findByGroup(destGroup);
+        CreateRound round = new CreateRound();
+        if (destUser != null) {
+            List<AccountW> accountWS = unitsGroup.get(destUser);
+            int i = 0;
+            for (AccountW accountW : accountWS) {
+                if (accountW.getPriority() > 0) {
+                    i += accountW.getPriority();
+                }
+
+            }
+            if (i == 0) {
+                round.win(srcUser.getRace());
+                return true;
+            }
         }
         return false;
     }

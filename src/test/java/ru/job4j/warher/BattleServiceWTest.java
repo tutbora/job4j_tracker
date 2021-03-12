@@ -59,13 +59,6 @@ public class BattleServiceWTest {
     }
 
     @Test
-    public void whenDeleteAccount() {
-        BattleServiceW bank = CreateArena.groups(1);
-        bank.deleteAccountTest("1111", 2);
-        assertThat(bank.accountsSize("1111"), is(7));
-    }
-
-    @Test
     public void transferMoney() {
         UserW user = new UserW("1111", "Elf");
         UserW user2 = new UserW("3333", "Orc");
@@ -102,24 +95,25 @@ public class BattleServiceWTest {
         BattleServiceW bank = new BattleServiceW();
         bank.addUser(user);
         bank.addUser(user2);
-        bank.addAccount(user.getGroup(), new AccountW(1, 100D, 15D, 1, true, "wizard"));
+        bank.addAccount(user.getGroup(), new AccountW(0, 100D, 15D, 1, true, "wizard"));
+        bank.addAccount(user2.getGroup(), new AccountW(0, 100D, 10D, 1, true, "wizard"));
         bank.addAccount(user2.getGroup(), new AccountW(1, 10D, 10D, 1, true, "wizard"));
-        bank.addAccount(user2.getGroup(), new AccountW(2, 10D, 10D, 1, true, "wizard"));
-        bank.fight(user.getGroup(), 1, user2.getGroup(), 2);
-        assertNull(bank.findByParam(user2.getGroup(), 2));
+        bank.fight(user.getGroup(), 0, user2.getGroup(), 0);
+        assertThat(bank.findByParam(user2.getGroup(), 0).getPriority(), is(1));
     }
 
     @Test
-    public void whenWin1() {
+    public void whenWinElf() {
         UserW user = new UserW("1111", "Elf");
         UserW user2 = new UserW("3333", "Orc");
         BattleServiceW bank = new BattleServiceW();
         bank.addUser(user);
         bank.addUser(user2);
-        bank.addAccount(user.getGroup(), new AccountW(1, 100D, 15D, 1, true, "wizard"));
-        bank.addAccount(user2.getGroup(), new AccountW(1, 10D, 10D, 1, true, "wizard"));
-        bank.fight(user.getGroup(), 1, user2.getGroup(), 1);
-        assertThat(bank.accountsSize("3333"), is(0));
+        bank.addAccount(user.getGroup(), new AccountW(0, 100D, 15D, 1, true, "wizard1"));
+        bank.addAccount(user2.getGroup(), new AccountW(0, 10D, 10D, 1, true, "wizard2"));
+        bank.addAccount(user2.getGroup(), new AccountW(1, 10D, 10D, 0, true, "wizard3"));
+        bank.fight(user.getGroup(), 0, user2.getGroup(), 0);
+        assertThat(bank.win(user.getGroup(), user2.getGroup()), is(true));
     }
 
     @Test
