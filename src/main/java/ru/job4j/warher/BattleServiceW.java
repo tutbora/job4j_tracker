@@ -38,6 +38,12 @@ public class BattleServiceW {
         if (actions == 2) {
             rsl = rand.nextInt(actions) + 3;
         }
+        if (actions == 3) {
+            rsl = 2;
+        }
+        if (actions == 4) {
+            rsl = 4;
+        }
         return rsl;
     }
 
