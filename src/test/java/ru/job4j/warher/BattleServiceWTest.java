@@ -48,47 +48,6 @@ public class BattleServiceWTest {
     }
 
     @Test
-    public void whenDelete2Accounts() {
-        UserW user = new UserW("1111", "Elf");
-        BattleServiceW bank = new BattleServiceW();
-        bank.addUser(user);
-        bank.addAccount(user.getGroup(), new AccountW(1, 150D, 15, 1, true, "wizard"));
-        bank.addAccount(user.getGroup(), new AccountW(2, 0, 15, 1, true, "wizard"));
-        bank.deleteAccount("1111", 2);
-        assertNull(bank.findByParam("1111", 2));
-    }
-
-    @Test
-    public void transferMoney() {
-        UserW user = new UserW("1111", "Elf");
-        UserW user2 = new UserW("3333", "Orc");
-        BattleServiceW bank = new BattleServiceW();
-        bank.addUser(user);
-        bank.addUser(user2);
-        bank.addAccount(
-                user.getGroup(), new AccountW(1, 150D, 15, 1, true, "wizard"));
-        bank.addAccount(
-                user2.getGroup(), new AccountW(2, 50D, 15, 1, true, "wizard"));
-        bank.transferMoney(user.getGroup(), 1, user2.getGroup(), 2, 150D);
-        assertThat(bank.findByParam(user2.getGroup(), 2).getHealth(), is(200D));
-    }
-
-    @Test
-    public void transferMoneyBecameFifty() {
-        UserW user = new UserW("1111", "Elf");
-        UserW user2 = new UserW("3333", "Orc");
-        BattleServiceW bank = new BattleServiceW();
-        bank.addUser(user);
-        bank.addUser(user2);
-        bank.addAccount(
-                user.getGroup(), new AccountW(1, 150D, 15D, 1, true, "wizard"));
-        bank.addAccount(
-                user2.getGroup(), new AccountW(2, 50D, 15D, 1, true, "wizard"));
-        bank.transferMoney(user.getGroup(), 1, user2.getGroup(), 2, 100D);
-        assertThat(bank.findByParam(user.getGroup(), 1).getHealth(), is(50D));
-    }
-
-    @Test
     public void whenFight() {
         UserW user = new UserW("1111", "Elf");
         UserW user2 = new UserW("3333", "Orc");

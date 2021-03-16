@@ -10,8 +10,8 @@ public class CreateRound {
     }
 
     public void battleRound1To2() {
-        int[] rand1 = BattleServiceW.randomUnit(bank.accountsSize(GROUP1));
-        int[] rand2 = BattleServiceW.randomUnit(bank.accountsSize(GROUP2));
+        int[] rand1 = RandomW.randomUnit(bank.accountsSize(GROUP1));
+        int[] rand2 = RandomW.randomUnit(bank.accountsSize(GROUP2));
         int a = 0;
         int ii = 0;
         for (int j : rand1) {
@@ -24,8 +24,8 @@ public class CreateRound {
                 a++;
             }
         }
-        rand1 = BattleServiceW.randomUnit(bank.accountsSize(GROUP1));
-        rand2 = BattleServiceW.randomUnit(bank.accountsSize(GROUP2));
+        rand1 = RandomW.randomUnit(bank.accountsSize(GROUP1));
+        rand2 = RandomW.randomUnit(bank.accountsSize(GROUP2));
         int b = 0;
         ii = 0;
         for (int j : rand2) {
@@ -38,21 +38,7 @@ public class CreateRound {
                 b++;
             }
         }
-
-//            for (int i = 0; i < bank.accountsSize(GROUP1); i++) {
-//                bank.fight(GROUP1, rand1[i], GROUP2, rand2[i]);
-//                toConsole1(i, rand1, rand2);
-//            }
     }
-
-//    public void battleRound2To1() {
-//        int[] rand1 = BattleServiceW.randomUnit(bank.accountsSize(GROUP1));
-//        int[] rand2 = BattleServiceW.randomUnit(bank.accountsSize(GROUP2));
-//            for (int ii = 0; ii < bank.accountsSize(GROUP2); ii++) {
-//                bank.fight(GROUP2, rand2[ii], GROUP1, rand1[ii]);
-//                toConsole2(ii, rand1, rand2);
-//            }
-//    }
 
     public void registerBattle() {
         System.out.println(
@@ -69,13 +55,6 @@ public class CreateRound {
                         + round
                         + " #####"
                         + System.lineSeparator());
-    }
-
-    public void win(int win) {
-        System.out.println(System.lineSeparator()
-                + "WIN "
-                + win
-                + System.lineSeparator());
     }
 
     public void win(String win) {

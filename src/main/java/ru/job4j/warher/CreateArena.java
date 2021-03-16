@@ -13,8 +13,8 @@ public class CreateArena {
 
     public static BattleServiceW groups(int choice) {
         BattleServiceW bank = new BattleServiceW();
-        int fromRandom = BattleServiceW.randomRace(choice);
-        int fromRandom2 = BattleServiceW.randomRace(choice + 1);
+        int fromRandom = RandomW.randomRace(choice);
+        int fromRandom2 = RandomW.randomRace(choice + 1);
         double health = 25D;
         UserW user;
         if (fromRandom == 1) {
