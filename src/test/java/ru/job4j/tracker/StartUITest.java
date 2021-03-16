@@ -88,13 +88,13 @@ public class StartUITest {
                 new String[] {"0", "1"}
         );
         List<UserAction> actions = new ArrayList<>();
-                actions.add(new ShowAllItems(out));
+                actions.add(new ShowAllItemsAW(out));
                 actions.add(new ExitProgram(out));
         new StartUI(out).init(in, tracker, actions);
         String menu = System.lineSeparator()
                 + "Menu."
                 + System.lineSeparator()
-                + "0. Show all items."
+                + "0. Show all items. By sort A - W."
                 + System.lineSeparator()
                 + "1. Exit Program."
                 + System.lineSeparator()
@@ -107,7 +107,91 @@ public class StartUITest {
                 + System.lineSeparator()
                 + "Menu."
                 + System.lineSeparator()
-                + "0. Show all items."
+                + "0. Show all items. By sort A - W."
+                + System.lineSeparator()
+                + "1. Exit Program."
+                + System.lineSeparator()
+                + System.lineSeparator();
+        assertThat(out.toString(), is(menu));
+    }
+
+    @Test
+    public void whenSortAW() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        tracker.add(new Item("A"));
+        tracker.add(new Item("B"));
+        tracker.add(new Item("C"));
+        Input in = new StubInput(
+                new String[] {"0", "1"}
+        );
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new ShowAllItemsAW(out));
+        actions.add(new ExitProgram(out));
+        new StartUI(out).init(in, tracker, actions);
+        String menu = System.lineSeparator()
+                + "Menu."
+                + System.lineSeparator()
+                + "0. Show all items. By sort A - W."
+                + System.lineSeparator()
+                + "1. Exit Program."
+                + System.lineSeparator()
+                + System.lineSeparator()
+                + System.lineSeparator()
+                + "Total items: 3"
+                + System.lineSeparator()
+                + "Item{id=1, name='A'}"
+                + System.lineSeparator()
+                + "Item{id=2, name='B'}"
+                + System.lineSeparator()
+                + "Item{id=3, name='C'}"
+                + System.lineSeparator()
+                + System.lineSeparator()
+                + "Menu."
+                + System.lineSeparator()
+                + "0. Show all items. By sort A - W."
+                + System.lineSeparator()
+                + "1. Exit Program."
+                + System.lineSeparator()
+                + System.lineSeparator();
+        assertThat(out.toString(), is(menu));
+    }
+
+    @Test
+    public void whenSortWA() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        tracker.add(new Item("A"));
+        tracker.add(new Item("B"));
+        tracker.add(new Item("C"));
+        Input in = new StubInput(
+                new String[] {"0", "1"}
+        );
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new ShowAllItemsWA(out));
+        actions.add(new ExitProgram(out));
+        new StartUI(out).init(in, tracker, actions);
+        String menu = System.lineSeparator()
+                + "Menu."
+                + System.lineSeparator()
+                + "0. Show all items. By sort W - A."
+                + System.lineSeparator()
+                + "1. Exit Program."
+                + System.lineSeparator()
+                + System.lineSeparator()
+                + System.lineSeparator()
+                + "Total items: 3"
+                + System.lineSeparator()
+                + "Item{id=3, name='C'}"
+                + System.lineSeparator()
+                + "Item{id=2, name='B'}"
+                + System.lineSeparator()
+                + "Item{id=1, name='A'}"
+                + System.lineSeparator()
+                + System.lineSeparator()
+                + "Menu."
+                + System.lineSeparator()
+                + "0. Show all items. By sort W - A."
                 + System.lineSeparator()
                 + "1. Exit Program."
                 + System.lineSeparator()

@@ -37,7 +37,8 @@ public class StartUI {
         Tracker tracker = new Tracker();
         List<UserAction> actions = new ArrayList<>();
         actions.add(new CreateAction(out));
-        actions.add(new ShowAllItems(out));
+        actions.add(new ShowAllItemsAW(out));
+        actions.add(new ShowAllItemsWA(out));
         actions.add(new ReplaceAction(out));
         actions.add(new DeleteItem(out));
         actions.add(new FindById(out));
