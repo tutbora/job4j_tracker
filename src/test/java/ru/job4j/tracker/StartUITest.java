@@ -119,9 +119,9 @@ public class StartUITest {
     public void whenSortAW() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        tracker.add(new Item("A"));
-        tracker.add(new Item("B"));
-        tracker.add(new Item("C"));
+        Item itemA = tracker.add(new Item("A"));
+        Item itemB = tracker.add(new Item("B"));
+        Item itemC = tracker.add(new Item("C"));
         Input in = new StubInput(
                 new String[] {"0", "1"}
         );
@@ -140,11 +140,11 @@ public class StartUITest {
                 + System.lineSeparator()
                 + "Total items: 3"
                 + System.lineSeparator()
-                + "Item{id=1, name='A'}"
+                + itemA
                 + System.lineSeparator()
-                + "Item{id=2, name='B'}"
+                + itemB
                 + System.lineSeparator()
-                + "Item{id=3, name='C'}"
+                + itemC
                 + System.lineSeparator()
                 + System.lineSeparator()
                 + "Menu."
@@ -161,9 +161,9 @@ public class StartUITest {
     public void whenSortWA() {
         Output out = new StubOutput();
         Tracker tracker = new Tracker();
-        tracker.add(new Item("A"));
-        tracker.add(new Item("B"));
-        tracker.add(new Item("C"));
+        Item itemA = tracker.add(new Item("A"));
+        Item itemB = tracker.add(new Item("B"));
+        Item itemC = tracker.add(new Item("C"));
         Input in = new StubInput(
                 new String[] {"0", "1"}
         );
@@ -182,11 +182,11 @@ public class StartUITest {
                 + System.lineSeparator()
                 + "Total items: 3"
                 + System.lineSeparator()
-                + "Item{id=3, name='C'}"
+                + itemC
                 + System.lineSeparator()
-                + "Item{id=2, name='B'}"
+                + itemB
                 + System.lineSeparator()
-                + "Item{id=1, name='A'}"
+                + itemA
                 + System.lineSeparator()
                 + System.lineSeparator()
                 + "Menu."
