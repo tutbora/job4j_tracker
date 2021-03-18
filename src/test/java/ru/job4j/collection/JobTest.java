@@ -47,7 +47,7 @@ public class JobTest {
                 = new JobSortNameAW().thenComparing(new JobSortPrior0to9());
         int rsl = cmpNamePriority.compare(
                 new Job("AAA", 0),
-                new Job("ABB", 1)
+                new Job("AAA", 1)
         );
         assertThat(rsl, lessThan(0));
     }
@@ -58,9 +58,9 @@ public class JobTest {
                 = new JobSortNameAW().thenComparing(new JobSortPrior9to0());
         int rsl = cmpNamePriority.compare(
                 new Job("AAA", 0),
-                new Job("ABB", 1)
+                new Job("AAA", 1)
         );
-        assertThat(rsl, lessThan(0));
+        assertThat(rsl, greaterThan(0));
     }
 
     @Test
