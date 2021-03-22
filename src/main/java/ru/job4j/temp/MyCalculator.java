@@ -1,7 +1,7 @@
 package ru.job4j.temp;
 
 class Calculator {
-   int c;
+   private int c;
 	
    public void addition(int a, int b) {
       c = a + b;
@@ -16,7 +16,7 @@ class Calculator {
 
 public class MyCalculator extends Calculator {
    public void multiplication(int a, int b) {
-      c = a * b;
+      int c = a * b;
       System.out.println("Произведение чисел: " + c);
       // добавленное ниже в этом методе для примера
       a = 10;
@@ -24,7 +24,6 @@ public class MyCalculator extends Calculator {
       MyCalculator cal = new MyCalculator();
       cal.addition(a, b);
       cal.subtraction(a, b);
-      cal.multiplication(a, b);
    }
 	
    public static void main(String[] args) {

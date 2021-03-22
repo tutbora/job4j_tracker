@@ -9,15 +9,37 @@ public class Engineer extends Profession {
     public Engineer() {
     }
 
-    public Engineer(String name, String surname, String education,
-                    int birthday, int salary, byte specialization, byte experience,
-                    String project, String customer, String technicalAssignment,
-                    String contractorToOutsource) {
-        super(name, surname, education, birthday, salary, specialization, experience);
-        this.project = project;
-        this.customer = customer;
-        this.technicalAssignment = technicalAssignment;
-        this.contractorToOutsource = contractorToOutsource;
+    public Engineer(
+            byte experience,
+            String project,
+            String customer,
+            String technicalAssignment,
+            String contractorToOutsource) {
+    }
+
+    public Engineer(
+            String name,
+            String surname,
+            String education,
+            int birthday,
+            int salary,
+            byte specialization) {
+    }
+
+    public Engineer(
+            String project,
+            String customer,
+            String technicalAssignment,
+            String contractorToOutsource) {
+    }
+
+    public Engineer(String name,
+                    String surname,
+                    String education,
+                    int birthday,
+                    int salary,
+                    byte specialization,
+                    byte experience) {
     }
 
     public String getProject() {

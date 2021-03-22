@@ -7,21 +7,19 @@ public class Builder extends Engineer {
     public Builder() {
     }
 
-    public Builder(String name, String surname,
-                   String education, int birthday,
-                   int salary, byte specialization,
-                   byte experience, String project,
+    public Builder(byte experience, String project,
                    String customer, String technicalAssignment,
                    String contractorToOutsource, String buildingImplements,
                    String helmet) {
-        super(name, surname,
-                education, birthday,
-                salary, specialization,
-                experience, project,
-                customer, technicalAssignment,
-                contractorToOutsource);
+        super(experience, project, customer, technicalAssignment, contractorToOutsource);
         this.buildingImplements = buildingImplements;
         this.helmet = helmet;
+    }
+
+    public Builder(String name, String surname,
+                   String education, int birthday,
+                   int salary, byte specialization) {
+        super(name, surname, education, birthday, salary, specialization);
     }
 
     @Override

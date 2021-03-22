@@ -24,6 +24,12 @@ public class Profession {
         this.experience = experience;
     }
 
+    public Profession(byte specialization, byte experience) {
+    }
+
+    public Profession(String name, String surname, String education, int birthday, int salary) {
+    }
+
     public String getName() {
         return name;
     }

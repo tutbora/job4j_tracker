@@ -15,8 +15,7 @@ public class SubjectOfStudy {
     }
 
     public SubjectOfStudy(String detailDrawing, String accessories, String example,
-                          String numerals, String theorem, String prose, String poetry,
-                          String biography, String essay) {
+                          String numerals, String theorem, String prose, String poetry) {
         this.detailDrawing = detailDrawing;
         this.accessories = accessories;
         this.example = example;
@@ -24,6 +23,9 @@ public class SubjectOfStudy {
         this.theorem = theorem;
         this.prose = prose;
         this.poetry = poetry;
+    }
+
+    public SubjectOfStudy(String biography, String essay) {
         this.biography = biography;
         this.essay = essay;
     }
