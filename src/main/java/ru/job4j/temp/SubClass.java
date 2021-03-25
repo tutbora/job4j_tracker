@@ -2,7 +2,7 @@ package ru.job4j.temp;
 
    // Интерфейс
 class SuperClass {
-   int num = 88;
+   static final int NUM = 88;
 
    // Метод display() суперкласса
    public void display() {
@@ -32,7 +32,7 @@ public class SubClass extends SuperClass {
       System.out.println("Значение переменной num в подклассе: " + sub.num);
 
       // Выводим значение переменной num суперкласса
-      System.out.println("Значение переменной num в суперклассе: " + super.num);
+      System.out.println("Значение переменной num в суперклассе: " + NUM);
    }
 
    public static void main(String[] args) {
