@@ -11,7 +11,7 @@ class SuperClass {
 }
 
 public class SubClass extends SuperClass {
-   int num = 77;
+   private final int num = 77;
 
    // Метод display() субкласса
    public void display() {
