@@ -7,7 +7,7 @@ public class CreateArena {
     }
 
     public static int randomActions(int actions) {
-        int rsl = 1;
+        int rsl = actions;
         Random rand = new Random();
         if (actions == 1) {
             rsl = rand.nextInt(actions + 1) + 1;
@@ -21,7 +21,7 @@ public class CreateArena {
     public static Actions account(int group) {
         int fromRandom = randomActions(group);
         Actions actions = new Actions();
-        if (fromRandom == 1) {
+        if (fromRandom == 1 || group == 11) {
             Unit unit = new Unit("Elf");
             actions.addUnit(unit);
             actions.addAccount(unit.getRace(), new Account("wizard", 100, 2, 1, false));
@@ -47,7 +47,7 @@ public class CreateArena {
             actions.addAccount(unit.getRace(), new Account("warrior4", 100, 1, 1, false));
             return actions;
         }
-        if (fromRandom == 3) {
+        if (fromRandom == 3 || group == 21) {
             Unit unit = new Unit("Orc");
             actions.addUnit(unit);
             actions.addAccount(unit.getRace(), new Account("shaman", 100, 2, 1, false));

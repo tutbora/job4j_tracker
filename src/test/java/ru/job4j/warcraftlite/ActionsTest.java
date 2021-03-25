@@ -22,13 +22,6 @@ public class ActionsTest {
     }
 
     @Test
-    public void whenFindAddRace() {
-        Actions actions = new Actions();
-        var acc = actions.addGroup(1);
-        assertThat(acc.findByRace("Elf"), is("Elf"));
-    }
-
-    @Test
     public void whenAddAccount() {
         Unit unit = new Unit("Elf");
         Actions actions = new Actions();
@@ -46,15 +39,13 @@ public class ActionsTest {
 
     @Test
     public void whenAddGroupElf() {
-    Actions actions = new Actions();
-    var acc = actions.addGroup(1);
+    var acc = Actions.addGroup(11);
     assertThat(acc.findByUnitName("Elf", "archer1").getHealth(), is(100));
     }
 
     @Test
     public void whenAddGroupOrc() {
-        Actions actions = new Actions();
-        var acc = actions.addGroup(2);
+        var acc = Actions.addGroup(21);
         assertThat(acc.findByUnitName("Orc", "goblin4").getHealth(), is(100));
     }
 }
