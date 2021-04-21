@@ -3,6 +3,7 @@ package ru.job4j.lambda;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.ToIntFunction;
 
 public class AttachmentSort {
     public static void main(String[] args) {
@@ -28,5 +29,17 @@ public class AttachmentSort {
                 return o1.getSize() - o2.getSize();
             }
         };
+        Comparator<String> cmpText2 = (s, anotherString) -> s.compareTo(anotherString);
+        Comparator<String> cmpText = (left, right) -> left.compareTo(right);
+
+        Comparator<String> cmpDescSize2 = Comparator
+                .comparing(String::length).reversed();
+
+        Comparator<String> cmpDescSize = Comparator.comparingInt(new ToIntFunction<String>() {
+            @Override
+            public int applyAsInt(String l) {
+                return l.length();
+            }
+        }).reversed();
     }
 }
