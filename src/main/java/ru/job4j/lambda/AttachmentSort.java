@@ -31,6 +31,7 @@ public class AttachmentSort {
         };
         Comparator<String> cmpText2 = (s, anotherString) -> s.compareTo(anotherString);
         Comparator<String> cmpText = (left, right) -> left.compareTo(right);
+        Comparator<String> cmpText3 = Comparator.comparingInt(String::length).reversed();
 
         Comparator<String> cmpDescSize2 = Comparator
                 .comparing(String::length).reversed();
