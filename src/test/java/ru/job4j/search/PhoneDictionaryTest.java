@@ -11,6 +11,9 @@ public class PhoneDictionaryTest {
     public void whenFindByName() {
         PhoneDictionary phones = new PhoneDictionary();
         phones.add(
+                new Person("Anton", "Topolev", "874523", "Piter")
+        );
+        phones.add(
                 new Person("Petr", "Arsentev", "534872", "Bryansk")
         );
         ArrayList<Person> persons = phones.find("Petr");
