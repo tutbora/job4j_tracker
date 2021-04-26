@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 public class StreamUsageAlpha {
     public static void main(String[] args) {
         ArrayList<Integer> listNum = new ArrayList<>();
-        listNum.add(0, 5);
-        listNum.add(1, -15);
-        listNum.add(2, 7);
-        listNum.add(3, -4);
-        listNum.add(4, 9);
-        listNum.add(5, 2);
+        listNum.add(5);
+        listNum.add(-15);
+        listNum.add(7);
+        listNum.add(-4);
+        listNum.add(9);
+        listNum.add(2);
 
         List<Integer> listPositiveSorted = listNum.stream()
                 .filter(num -> (num > 0))
