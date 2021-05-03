@@ -5,6 +5,11 @@ import static org.hamcrest.Matchers.is;
 
 import org.junit.Test;
 
+/**
+ * Даны две строки. Нужно проверить, что вторая строка получилась
+ * методом перестановок символов в первой строке.
+ */
+
 public class FreezeStrTest {
 
     @Test
