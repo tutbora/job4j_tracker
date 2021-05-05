@@ -23,8 +23,7 @@ public class Departments {
 
     public static List<String> sortDesc(List<String> orgs) {
         DepDescComp depDescComp = new DepDescComp();
-        orgs.sort(depDescComp
-                .thenComparing(Comparator.reverseOrder()));
+        orgs.sort(depDescComp);
         return orgs;
     }
 }
