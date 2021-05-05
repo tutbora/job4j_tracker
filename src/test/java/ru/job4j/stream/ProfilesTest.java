@@ -1,9 +1,7 @@
 package ru.job4j.stream;
 
 import org.junit.Test;
-
 import java.util.List;
-
 import static org.junit.Assert.*;
 import static org.hamcrest.core.Is.is;
 
@@ -24,7 +22,6 @@ public class ProfilesTest {
                 new Profile(expected.get(3))
         );
         List<Address> rsl = new Profiles().collect(profOne);
-
         assertThat(rsl, is(expected));
     }
 }
