@@ -42,12 +42,11 @@ public class BankService {
      * @return user if found his passport
      */
     public User findByPassport(String passport) {
-        for (var find : users.keySet()) {
-            if (find.getPassport().equals(passport)) {
-                return find;
-            }
-        }
-        return null;
+        return users.keySet()
+                .stream()
+                .filter(s -> s.getPassport().equals(passport))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -58,15 +57,14 @@ public class BankService {
      */
     public Account findByRequisite(String passport, String requisite) {
         User rsl = findByPassport(passport);
-        if (rsl != null) {
-            List<Account> accounts = users.get(rsl);
-            for (var userAccount : accounts) {
-                if (userAccount.getRequisite().contains(requisite)) {
-                    return userAccount;
-                }
-            }
+        if (rsl == null) {
+            return null;
         }
-        return null;
+        return users.get(rsl)
+                .stream()
+                .filter(s -> s.getRequisite().contains(requisite))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -77,19 +75,16 @@ public class BankService {
      * @param destPassport unique user passport number 2
      * @param destRequisite user account requisite number 2
      * @param amount sum for money transfer
-     * @return true if this operation is true
      */
-    public boolean transferMoney(String srcPassport, String srcRequisite,
-                                 String destPassport, String destRequisite, double amount) {
+    public void transferMoney(String srcPassport, String srcRequisite,
+                              String destPassport, String destRequisite, double amount) {
     var userSrcReq = findByRequisite(srcPassport, srcRequisite);
     var userDestReq = findByRequisite(destPassport, destRequisite);
     if (userSrcReq != null && userDestReq != null) {
         if (userSrcReq.getBalance() >= amount) {
             userSrcReq.setBalance(userSrcReq.getBalance() - amount);
             userDestReq.setBalance(userDestReq.getBalance() + amount);
-            return true;
         }
     }
-        return false;
     }
 }
