@@ -76,7 +76,7 @@ public class BankService {
      * @param destRequisite user account requisite number 2
      * @param amount sum for money transfer
      */
-    public void transferMoney(String srcPassport, String srcRequisite,
+    public boolean transferMoney(String srcPassport, String srcRequisite,
                               String destPassport, String destRequisite, double amount) {
     var userSrcReq = findByRequisite(srcPassport, srcRequisite);
     var userDestReq = findByRequisite(destPassport, destRequisite);
@@ -84,7 +84,9 @@ public class BankService {
         if (userSrcReq.getBalance() >= amount) {
             userSrcReq.setBalance(userSrcReq.getBalance() - amount);
             userDestReq.setBalance(userDestReq.getBalance() + amount);
+            return true;
         }
     }
+    return false;
     }
 }

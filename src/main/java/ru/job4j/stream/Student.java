@@ -5,7 +5,12 @@ import java.util.Objects;
 public class Student {
     private final int score;
 
-    private final String surname;
+    private String surname;
+
+    public Student(String surname, int score) {
+        this.score = score;
+        this.surname = surname;
+    }
 
     public Student(int score, String surname) {
         this.score = score;
@@ -20,6 +25,10 @@ public class Student {
         return surname;
     }
 
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -29,8 +38,7 @@ public class Student {
             return false;
         }
         Student student = (Student) o;
-        return score == student.score
-                && Objects.equals(surname, student.surname);
+        return score == student.score && surname.equals(student.surname);
     }
 
     @Override
