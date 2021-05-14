@@ -1,12 +1,10 @@
 package ru.job4j.stream;
 
-import java.util.stream.Stream;
-
 public class Book {
     private String name;
     private String author;
-    private byte year;
-    private byte pages;
+    private int year;
+    private int pages;
     private String isbn;
     private String eBook;
     private boolean published;
@@ -14,8 +12,8 @@ public class Book {
     static class Builder {
         private String name;
         private String author;
-        private byte year;
-        private byte pages;
+        private int year;
+        private int pages;
         private String isbn;
         private String eBook;
         private boolean published;
@@ -30,12 +28,12 @@ public class Book {
             return this;
         }
 
-        Builder buildYear(byte year) {
+        Builder buildYear(int year) {
             this.year = year;
             return this;
         }
 
-        Builder buildPages(byte pages) {
+        Builder buildPages(int pages) {
             this.pages = pages;
             return this;
         }
@@ -72,13 +70,32 @@ public class Book {
         Book book = new Builder()
                 .buildName("A Twist in the Tale")
                 .buildAuthor("Jeffrey Archer")
-                .buildYear((byte) 1988)
-                .buildPages((byte) 272)
+                .buildYear(1988)
+                .buildPages(272)
                 .buildIsbn("0-340-49353-4")
                 .buildEBook("https://www.fantasticfiction.com/a/jeffrey-archer/twist-in-tale.htm")
                 .buildPublished(true)
                 .build();
         System.out.println(book);
+    }
+
+    @Override
+    public String toString() {
+        return "BOOK CARD"
+                + System.lineSeparator()
+                + "name:      " + name
+                + System.lineSeparator()
+                + "author:    " + author
+                + System.lineSeparator()
+                + "year:      " + year
+                + System.lineSeparator()
+                + "pages:     " + pages
+                + System.lineSeparator()
+                + "isbn:      " + isbn
+                + System.lineSeparator()
+                + "ebook:     " + eBook
+                + System.lineSeparator()
+                + "published: " + published;
     }
 }
 

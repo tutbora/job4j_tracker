@@ -62,7 +62,7 @@ public class BankService {
         }
         return users.get(rsl)
                 .stream()
-                .filter(s -> s.getRequisite().contains(requisite))
+                .filter(s -> s.getRequisite().equals(requisite))
                 .findFirst()
                 .orElse(null);
     }
@@ -80,12 +80,15 @@ public class BankService {
                               String destPassport, String destRequisite, double amount) {
     var userSrcReq = findByRequisite(srcPassport, srcRequisite);
     var userDestReq = findByRequisite(destPassport, destRequisite);
-    if (userSrcReq != null && userDestReq != null) {
-        if (userSrcReq.getBalance() >= amount) {
+    if (
+            userSrcReq != null
+            && userDestReq != null
+            && userSrcReq.getBalance()
+            >= amount) {
+
             userSrcReq.setBalance(userSrcReq.getBalance() - amount);
             userDestReq.setBalance(userDestReq.getBalance() + amount);
             return true;
-        }
     }
     return false;
     }
