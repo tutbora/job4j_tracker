@@ -58,17 +58,15 @@ public class BankService {
      */
 
     public Optional<Account> findByRequisite(String passport, String requisite) {
-        Optional<Account> rslNull = Optional.empty();
-        var rsl = findByPassport(passport);
-        if (rsl.isPresent()) {
-            var accounts = users.get(rsl.get());
-            rslNull = accounts.stream()
+        Optional<Account> rsl = Optional.empty();
+        var user = findByPassport(passport);
+        if (user.isPresent()) {
+            var accounts = users.get(user.get());
+            rsl = accounts.stream()
                     .filter(account -> account.getRequisite().equals(requisite))
-                    .findFirst()
-                    .map(Optional::of)
-                    .orElse(rslNull);
+                    .findFirst();
         }
-        return rslNull;
+        return rsl;
     }
 
     /**
