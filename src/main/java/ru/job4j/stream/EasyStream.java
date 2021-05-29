@@ -6,10 +6,10 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class EasyStream {
-    private static List<Integer> elementList;
+    private final List<Integer> elementList;
 
     private EasyStream(List<Integer> source) {
-        elementList.addAll(source);
+        this.elementList = source;
     }
 
     public static EasyStream of(List<Integer> source) {
@@ -17,11 +17,11 @@ public class EasyStream {
     }
 
     public EasyStream map(Function<Integer, Integer> fun) {
-        for (int i = 0; i < elementList.size(); i++) {
-            Integer integer = elementList.get(i);
-            elementList.set(i, fun.apply(integer));
+        List<Integer> rsl = new ArrayList<>();
+        for (Integer integer : elementList) {
+            rsl.add(fun.apply(integer));
         }
-        return new EasyStream(elementList);
+        return new EasyStream(rsl);
     }
 
     public EasyStream filter(Predicate<Integer> fun) {
@@ -35,6 +35,6 @@ public class EasyStream {
     }
 
     public List<Integer> collect() {
-        return new ArrayList<>(elementList);
+        return elementList;
     }
 }
