@@ -2,7 +2,9 @@ package ru.job4j.stream;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
+
 import org.junit.Test;
+
 import java.util.List;
 
 public class EasyStreamTest {
@@ -56,7 +58,7 @@ public class EasyStreamTest {
     }
 
     @Test
-    public void whenMultyFilterSource() {
+    public void whenMultiFilterSource() {
         var rsl = EasyStream.of(List.of(1, 2, 3, 4, 5))
                 .filter(e -> e >= 2)
                 .filter(e -> e <= 4)
