@@ -15,7 +15,7 @@ env:
   global:
     - CODECOV_TOKEN="5bc6c29a-e24a-4a66-b8ae-156d4c241eb0"
 
-# Отправлять уведомление на почту tutbora@gmail.com (Изменить на свою) если сборка упала
+# Отправлять уведомление на почту tutbora@gmail.com если сборка упала
 notifications:
   email:
     recipients:
