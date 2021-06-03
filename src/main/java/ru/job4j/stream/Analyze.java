@@ -33,7 +33,9 @@ public class Analyze {
                 .entrySet()
                 .stream()
                 .map(tuple -> new Tuple(tuple.getKey(), tuple.getValue()))
-                .sorted(Comparator.comparing(Tuple::hashCode).reversed())
+                .sorted(Comparator.comparing(Tuple::getName)
+                        .reversed()
+                        .thenComparing(Tuple::getScore))
                 .collect(Collectors.toList());
     }
 
@@ -44,7 +46,7 @@ public class Analyze {
                         .stream()
                         .mapToInt(Subject::getScore)
                         .sum()))
-                        .min(Comparator.comparing(Tuple::hashCode))
+                        .max(Comparator.comparing(Tuple::getScore))
                 .orElse(null);
     }
 
@@ -56,7 +58,7 @@ public class Analyze {
                 .entrySet()
                 .stream()
                 .map(tuple -> new Tuple(tuple.getKey(), tuple.getValue()))
-                .max(Comparator.comparingDouble(Tuple::hashCode))
+                .max(Comparator.comparingDouble(Tuple::getScore))
                 .orElse(null);
     }
 }
