@@ -44,8 +44,8 @@ public class Analyze {
                         .stream()
                         .mapToInt(Subject::getScore)
                         .sum()))
-                        .max(Comparator.comparing(Tuple::hashCode))
-                        .orElse(0);
+                        .min(Comparator.comparing(Tuple::hashCode))
+                .orElse(null);
     }
 
     public static Tuple bestSubject(Stream<Pupil> stream) {
@@ -56,8 +56,7 @@ public class Analyze {
                 .entrySet()
                 .stream()
                 .map(tuple -> new Tuple(tuple.getKey(), tuple.getValue()))
-                .sorted(Comparator.comparing(Tuple::hashCode).reversed())
                 .max(Comparator.comparingDouble(Tuple::hashCode))
-                .orElse(0);
+                .orElse(null);
     }
 }
