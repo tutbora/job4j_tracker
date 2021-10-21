@@ -1,0 +1,52 @@
+Start battle: Human with Undead
+
+##### Round 1 #####
+
+0. arbalester3 H:25.0 from Human group attack zombie2 H:20.0 from Undead group 
+cause loss A:5.0
+zombie2 stay H:20.0
+1. warrior1 H:25.0 from Human group attack hunter2 H:7.0 from Undead group 
+cause loss A:18.0
+hunter2 stay H:7.0
+2. warrior4 H:25.0 from Human group attack hunter1 H:7.0 from Undead group 
+cause loss A:18.0
+hunter1 stay H:7.0
+3. arbalester1 H:25.0 from Human group attack necromancer H:20.0 from Undead group 
+cause loss A:5.0
+necromancer stay H:20.0
+4. warrior3 H:25.0 from Human group attack zombie1 H:7.0 from Undead group 
+cause loss A:18.0
+zombie1 stay H:7.0
+5. warrior2 H:25.0 from Human group attack zombie3 H:7.0 from Undead group 
+cause loss A:18.0
+zombie3 stay H:7.0
+6. arbalester2 H:25.0 from Human group attack hunter3 H:20.0 from Undead group 
+cause loss A:5.0
+hunter3 stay H:20.0
+7. wizard H:25.0 from Human group attack zombie4 H:25.0 from Undead group 
+cause loss A:0.0
+zombie4 stay H:25.0
+0. zombie1 H:7.0 from Undead group attack arbalester3 H:7.0 from Human group 
+cause loss A:18.0
+arbalester3 stay H:7.0
+1. zombie3 H:7.0 from Undead group attack warrior2 H:7.0 from Human group 
+cause loss A:18.0
+warrior2 stay H:7.0
+2. hunter3 H:20.0 from Undead group attack warrior3 H:21.0 from Human group 
+cause loss A:4.0
+warrior3 stay H:21.0
+3. zombie4 H:25.0 from Undead group attack arbalester1 H:7.0 from Human group 
+cause loss A:18.0
+arbalester1 stay H:7.0
+4. hunter1 H:7.0 from Undead group attack warrior1 H:21.0 from Human group 
+cause loss A:4.0
+warrior1 stay H:21.0
+5. necromancer H:20.0 from Undead group attack arbalester2 H:25.0 from Human group 
+cause loss A:0.0
+arbalester2 stay H:25.0
+6. hunter2 H:7.0 from Undead group attack warrior4 H:21.0 from Human group 
+cause loss A:4.0
+warrior4 stay H:21.0
+7. zombie2 H:20.0 from Undead group attack wizard H:7.0 from Human group 
+cause loss A:18.0
+wizard stay H:7.0

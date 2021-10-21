@@ -68,7 +68,7 @@ public class BattleServiceW {
     public boolean win(String srcGroup, String destGroup) {
         UserW srcUser = findByGroup(srcGroup);
         UserW destUser = findByGroup(destGroup);
-        CreateRound round = new CreateRound();
+        CreateRoundW round = new CreateRoundW();
         if (destUser != null) {
             List<AccountW> accountWS = unitsGroup.get(destUser);
             int i = 0;

@@ -92,7 +92,7 @@ public class BattleServiceWTest {
 
     @Test
     public void whenFightAuto() {
-        BattleServiceW bank = CreateArena.groups(3);
+        BattleServiceW bank = CreateArenaW.groups(3);
         bank.fight("1111", 3, "2222", 6);
         assertThat(bank.findByParam("2222", 6).getHealth(), is(20D));
     }
