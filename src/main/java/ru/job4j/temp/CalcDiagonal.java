@@ -7,30 +7,42 @@ import java.util.Scanner;
 public class CalcDiagonal {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        double pixelLength, smLength, pixelHeight, smHeight, inchDiagonal, smDiagonal, smStep;
-        double smInInch = 2.54;
-        System.out.println("Расчет размера дисплея монитора.");
-        System.out.println("Пример данных для расчета: разрешение 1920х1080, "
-                + "диагональ 24\"");
-        System.out.print("Введите длину в пикселях: ");
-        pixelLength = scanner.nextDouble();
-        System.out.print("Введите высоту в пикселях: ");
-        pixelHeight = scanner.nextDouble();
-        System.out.print("Введите диагональ в дюймах: ");
+        double pxlLength, smLength, pxlHeight, smHeight, inchDiagonal, smDiagonal, smStep;
+        print(2, "Расчет размера дисплея монитора.");
+        print(2, "Пример данных для расчета: разрешение 1920х1080, "
+                + "диагональ 23.6\"");
+        print(1, "Введите длину в пикселях: ");
+        pxlLength = scanner.nextDouble();
+        print(1, "Введите высоту в пикселях: ");
+        pxlHeight = scanner.nextDouble();
+        print(1, "Введите диагональ в дюймах: ");
         inchDiagonal = scanner.nextDouble();
-        smDiagonal = inchDiagonal * smInInch;
-        double diagonalRelativity = Math.sqrt(pixelLength * pixelLength + pixelHeight * pixelHeight);
-        smStep = smDiagonal / diagonalRelativity;
-        smLength = pixelLength * smStep;
-        smHeight = pixelHeight * smStep;
-        double pixelsOnSm = pixelLength / smLength * pixelHeight / smHeight;
-        double pixelsOnInch = pixelLength / smLength * smInInch * pixelHeight / smHeight * smInInch;
+        smDiagonal = goToSm(inchDiagonal);
+        double pxlDiagonal = Math.sqrt(pxlLength * pxlLength + pxlHeight * pxlHeight);
+        smStep = smDiagonal / pxlDiagonal;
+        smLength = pxlLength * smStep;
+        smHeight = pxlHeight * smStep;
+        double pxlsOnSm = pxlLength / smLength * pxlHeight / smHeight;
+        double pxlsOnInch = goToSm(pxlLength / smLength) * goToSm(pxlHeight / smHeight);
         System.out.println("Длина расчетная, см: " + round(smLength, 1));
-        System.out.println("Высота расчетная, см: " + round(smHeight, 1));
-        System.out.println("Диагональ расчетная, см: "
+        print(2, "Высота расчетная, см: " + round(smHeight, 1));
+        print(2, "Диагональ расчетная, см: "
                 + round(Math.sqrt(smLength * smLength + smHeight * smHeight), 1));
-        System.out.println("Пикселей на см2: " + round(pixelsOnSm, 0));
-        System.out.println("Пикселей на дюйм2: " + round(pixelsOnInch, 0));
+        print(2, "Пикселей на см2: " + round(pxlsOnSm, 0));
+        print(2, "Пикселей на дюйм2: " + round(pxlsOnInch, 0));
+    }
+
+    private static void print(int line, String text) {
+        if (line == 1) {
+            System.out.print(text);
+        }
+        if (line == 2) {
+            System.out.println(text);
+        }
+    }
+
+    private static double goToSm(double inch) {
+        return inch * 2.54;
     }
 
     private static double round(double value, int places) {
