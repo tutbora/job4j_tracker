@@ -1,0 +1,7 @@
+Good understanding of CI/CD Jenkins.Cucumber.Perforce.Artifactory+GIT+Perforce
+(Jenkins
+/Cucumber
+/Perforce
+/Artifactory
+/GIT
+/Perforce)
