@@ -20,9 +20,12 @@ public class LinkedOOArray {
             list.add(0, i);
         }
 
-//        for (int i = 0; i < 300000; i++) {
-//            list.get(i);
-//        }
+/*
+      @replaced
+        for (int i = 0; i < 300000; i++) {
+            list.get(i);
+        }
+*/
 
         long end = System.currentTimeMillis();
         System.out.println(end - start);

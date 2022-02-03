@@ -50,7 +50,7 @@ public class MyLinkedList {
         return size;
     }
 
-    public MyLinkedList oddOrNotArithmetic(MyLinkedList list) {
+    public MyLinkedList oddOrNotArithmetic() {
         MyLinkedList value = new MyLinkedList();
         int count = 0;
         int countBool = 0;
@@ -66,11 +66,14 @@ public class MyLinkedList {
             }
                 temp = temp.getNext();
         }
-//        for (int i = 0; i < size; i++) {
-//            if (list.get(i) % 2 == 1) {
-//                count++;
-//            }
-//        }
+/*
+        @deprecated
+ for (int i = 0; i < size; i++) {
+     if (list.get(i) % 2 == 1) {
+         count++;
+     }
+ }
+*/
         long end = System.currentTimeMillis();
         value.add(count);
         value.add((int) (end - start));
@@ -78,7 +81,7 @@ public class MyLinkedList {
         return value;
     }
 
-    public MyLinkedList oddOrNotWithBit(MyLinkedList list) {
+    public MyLinkedList oddOrNotWithBit() {
         MyLinkedList value = new MyLinkedList();
         int count = 0;
         int countBool = 0;
@@ -93,11 +96,14 @@ public class MyLinkedList {
             }
             temp = temp.getNext();
         }
-//        for (int i = 0; i < size; i++) {
-//            if ((list.get(i) & 1) != 0) {
-//                count++;
-//            }
-//        }
+/*
+        @deprecated
+        for (int i = 0; i < size; i++) {
+            if ((list.get(i) & 1) != 0) {
+                count++;
+            }
+        }
+*/
         long end = System.currentTimeMillis();
         value.add(count);
         value.add((int) (end - start));
