@@ -1,6 +1,7 @@
 package ru.job4j.temp.mylinkedlist;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class MyLinkedList {
     private Node head;
@@ -31,6 +32,19 @@ public class MyLinkedList {
         return Arrays.toString(result);
     }
 
+    public boolean toString(String info) {
+        Node temp = head;
+        if (temp != null) {
+            System.out.println(info);
+            System.out.println("Quantity of numbers of odd " + temp.getValue());
+            temp = temp.getNext();
+            System.out.println("Time for all operations " + temp.getValue());
+            temp = temp.getNext();
+            System.out.println("Time for all boolean operations " + temp.getValue());
+        }
+        return true;
+    }
+
     public int get(int index) {
         int curIndex = 0;
         Node temp = head;
@@ -44,6 +58,30 @@ public class MyLinkedList {
             }
         }
         throw new IllegalArgumentException();
+    }
+
+    public void remove(int index) {
+        try {
+            Objects.checkIndex(index, size);
+        } catch (Exception e) {
+            System.out.println("index is invalid");
+            return;
+        }
+        Node temp = head;
+        if (index == 0) {
+            head = head.getNext();
+            size--;
+            return;
+        }
+        for (int i = 0; i < size; i++) {
+            if (index == i + 1) {
+                temp.setNext(temp.getNext().getNext());
+                size--;
+                return;
+            } else {
+                temp = temp.getNext();
+            }
+        }
     }
 
     public int getSize() {

@@ -7,17 +7,23 @@ public class Test {
         MyLinkedList myLinkedList = new MyLinkedList();
         MyLinkedList myLinkedListSimple = new MyLinkedList();
 
-        fillRandomList(myLinkedList, 1000);
+        fillRandomList(myLinkedList, 4);
+        System.out.println(myLinkedList);
+        myLinkedList.remove(-10);
+        System.out.println(myLinkedList);
         var notBit = myLinkedList.oddOrNotArithmetic();
         var bit = myLinkedList.oddOrNotWithBit();
         System.out.println(notBit);
         System.out.println(bit);
 
-        fillStraightRow(myLinkedListSimple, 1000);
+/*
+        @
+        fillStraightRow(myLinkedListSimple, 100000);
         var notBitSimple = myLinkedListSimple.oddOrNotArithmetic();
         var bitSimple = myLinkedListSimple.oddOrNotWithBit();
-        System.out.println(notBitSimple);
-        System.out.println(bitSimple);
+        System.out.println(notBitSimple.toString("info"));
+        System.out.println(bitSimple.toString("info"));
+        */
     }
 
     public static void fillRandomList(MyLinkedList list, int limit) {
