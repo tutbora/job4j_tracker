@@ -14,7 +14,7 @@ public class Test {
         System.out.println(hashSet);
         System.out.println(linkedHashSet);
         System.out.println(treeSet);
-        random(55);
+        randomUtils(55);
     }
 
     public static String[] generateRandomWords(int numberOfWords) {
@@ -31,7 +31,7 @@ public class Test {
         return randomStrings;
     }
 
-    public static void random(int count) {
+    public static void randomUtils(int count) {
         System.out.println(RandomStringUtils.randomAscii(count));
         System.out.println(RandomStringUtils.randomNumeric(count));
         System.out.println(RandomStringUtils.randomAlphanumeric(count));
