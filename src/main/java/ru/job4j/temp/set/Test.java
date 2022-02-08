@@ -36,5 +36,6 @@ public class Test {
         System.out.println(RandomStringUtils.randomNumeric(count));
         System.out.println(RandomStringUtils.randomAlphanumeric(count));
         System.out.println(RandomStringUtils.randomAlphabetic(count));
+        System.out.println(RandomStringUtils.random(count, 97, 123, true, true));
     }
 }
