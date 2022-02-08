@@ -37,5 +37,7 @@ public class Test {
         System.out.println(RandomStringUtils.randomAlphanumeric(count));
         System.out.println(RandomStringUtils.randomAlphabetic(count));
         System.out.println(RandomStringUtils.random(count, 97, 123, true, true));
+        char[] lineChar = new char[] {'a', 'b', 'c', 'd', 'e', 'f', '1', '2', '3' };
+        System.out.println(RandomStringUtils.random(count, lineChar));
     }
 }
